@@ -1,41 +1,34 @@
 <template>
-  
   <div id="app">
-    <my-nav />
-    
-    <router-view>
+    <Nav />
 
-    </router-view>
+    <router-view></router-view>
 
-    <my-footer />
+    <Footer />
   </div>
 </template>
 
 <script>
-import Nav from './components/nav/Nav.vue'
-import Footer from './components/footer/Footer.vue'
-
-
-
+import Nav from "./components/layout/Nav.vue";
+import Footer from "./components/layout/Footer.vue";
 
 export default {
-  name: 'App',
-  components:{
-    'my-nav' : Nav,
-    'my-footer' : Footer
+  name: "App",
+  components: {
+    Nav,
+    Footer
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  color: #2c3e50;
-  margin-top: 60px;
-  margin-bottom: 60px;
-}
 
+  color: #2c3e50;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 </style>
