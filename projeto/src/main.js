@@ -13,7 +13,7 @@ import InputText from "primevue/inputtext";
 import Button from 'primevue/button';
 
 
-Vue.component("Dropdown",Dropdown);
+Vue.component("Dropdown",Dropdown)
 Vue.component("InputText",InputText);
 Vue.component("Button", Button);
 Vue.use(VueRouter);
