@@ -1,6 +1,6 @@
 
 import HomePage from '@/components/layout/HomePage.vue'
-import ColaboradorPage from '@/components/colaboradores/ColaboradorPage.vue'
+import EmployeePage from '@/components/employees/EmployeePage.vue'
 
 
 export const routes = [
@@ -10,17 +10,17 @@ export const routes = [
     component: HomePage
   },
   {
-    path: '/colaborador/Add',
-    name: 'ColaboradorPageAdd',
-    component: ColaboradorPage,
+    path: '/employee/add',
+    name: 'EmployeePageAdd',
+    component: EmployeePage,
     props: {
       pageType: 'add'
     }
   },
   {
-    path: '/colaborador/edit',
-    name: 'ColaboradorPageEdit',
-    component: ColaboradorPage,
+    path: '/employee/edit',
+    name: 'employeePageEdit',
+    component: EmployeePage,
     props: {
       pageType: 'edit'
     }

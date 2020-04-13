@@ -11,11 +11,17 @@ import 'primeicons/primeicons.css'                           //icons
 import Dropdown from "primevue/dropdown";
 import InputText from "primevue/inputtext";
 import Button from 'primevue/button';
-
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup'; 
 
 Vue.component("Dropdown",Dropdown)
 Vue.component("InputText",InputText);
 Vue.component("Button", Button);
+Vue.component("ColumnGroup", ColumnGroup);
+Vue.component("Column", Column);
+Vue.component("DataTable", DataTable);
+
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes,

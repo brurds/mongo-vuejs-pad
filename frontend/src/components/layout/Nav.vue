@@ -29,12 +29,12 @@ export default {
             {
               label: "Cadastrar",
               icon: "pi pi-fw pi-user-plus",
-              to: "/colaborador/add"
+              to: "/employee/add"
             },
             {
               label: "Alterar",
               icon: "pi pi-fw pi-user",
-              to: "/colaborador/edit"
+              to: "/employee/edit"
             }
           ]
         }

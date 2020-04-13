@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 app.get("/employee", function (req, res) {
   employeeModel
     .find()
-    .then(function (listallEmployess) {
-      res.send(listallEmployess);
+    .then(function (listallEmployee) {
+      res.send(listallEmployee);
     })
     .catch(function (err) {
       console.log(err);
@@ -23,12 +23,12 @@ app.get("/employee", function (req, res) {
 app.post("/employee", function (req, res) {
   let employee = new employeeModel(req.body);
   employee.save()
-  .then(()=> res.send(employee))
-  .catch((err)=>{
+    .then(() => res.send(employee))
+    .catch((err) => {
       res.send(err);
       console.log(err);
-  });
-  
+    });
+
 });
 
 app.delete("/employee/:id", function (req, res) {
@@ -43,14 +43,14 @@ app.delete("/employee/:id", function (req, res) {
 });
 
 app.put("/employee/:id", function (req, res) {
-    let id = req.params.id; 
-    employeeModel
-      .updateOne({ _id: id },req.body)
-      .then(()=>res.send('update'))
-      .catch(function (err) {
-        console.log(err);
-        res.send(err);
-      });
-  });
-  
-app.listen(3001, () => console.log("Runnning on 3001"));
+  let id = req.params.id;
+  employeeModel
+    .updateOne({ _id: id }, req.body)
+    .then(() => res.send('update'))
+    .catch(function (err) {
+      console.log(err);
+      res.send(err);
+    });
+});
+
+app.listen(3000, () => console.log("Runnning"));

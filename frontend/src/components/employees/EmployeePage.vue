@@ -1,33 +1,46 @@
 <template>
-  <div>
-    <div class="p-col-12 p-lg-6">
+ <div>
+    <div >
       <div class="card card-w-title">
         <h1 v-if="isAdd">Cadastrar</h1>
         <h1 v-if="!isAdd">Alterar</h1>
       </div>
-
-      <ColaboradorForm />
-
-      <div class="p-col-12 p-md-4">
+      <div>
+      <EmployeeForm />
+      </div>
+      <div>
         <Button v-if="isAdd" label="Salvar" class="p-button-info p-button-rounded" />
         <Button v-if="!isAdd" label="Alterar" class="p-button-warning p-button-rounded" />
+      </div>
+      <div>
+       <EmployeeGrid v-if="!isAdd" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ColaboradorForm from "./ColaboradorForm";
-
+import EmployeeForm from "./EmployeeForm";
+import EmployeeGrid from "./EmployeeDataGrid"
+import Employee from "../../service/employee"
 export default {
   components: {
-    ColaboradorForm
+    EmployeeForm,
+    EmployeeGrid
+   
   },
   props: {
     pageType: {
       required: true,
       type: String
     }
+  },
+  mounted(){
+    Employee.listAll()
+    .then(res=>{
+      console.log(res)
+    })
+
   },
   computed: {
     isAdd() {
