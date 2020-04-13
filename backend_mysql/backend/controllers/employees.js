@@ -4,7 +4,7 @@ const EmployeeDao = require('../datebase/EmployeeDao');
 module.exports = function(app){
 
     app.get('/employees', function(req, resp){
-        let employees={};
+        
         var connection = app.datebase.connectionFactory(); 
         var employeeDao = new EmployeeDao(connection); 
         employeeDao.list(function(err, result){
@@ -12,7 +12,7 @@ module.exports = function(app){
                 resp.send(err);
                 return;
             }
-            employees =  resp.json(result);
+         resp.json(result);
         });        
     });
     app.get('/employees/employee/:id', function(req, resp){
