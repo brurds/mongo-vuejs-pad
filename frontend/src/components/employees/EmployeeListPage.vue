@@ -5,6 +5,9 @@
       <div>
         <EmployeeDataTable />
       </div>
+      <div>
+        <Message severity="info" :life="10000" :sticky="false">{{messages}}</Message>
+      </div>
     </div>
   </div>
 </template>
@@ -20,9 +23,10 @@ export default {
 
   data() {
     return {
-     
+      messages: 'Para alterar ou excluir selecione a linha desejada na tabela'
     };
   }
+  
 };
 </script>
 

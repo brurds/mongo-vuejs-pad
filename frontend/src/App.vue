@@ -38,6 +38,6 @@ export default {
   color: #2c3e50;
   margin-top: 50px;
   margin-bottom: 50px;
-  background-color: #FFFAFA;
+  
 }
 </style>

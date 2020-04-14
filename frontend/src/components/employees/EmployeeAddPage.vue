@@ -2,7 +2,7 @@
   <div>
     <div>
       
-      <div class="p-grid p-align-center p-justify-center ">
+      <div >
         <EmployeeForm
           :name.sync="employee.name"
           :position.sync="employee.position"
@@ -11,7 +11,7 @@
         />
       </div>
 
-      <div class="p-grid p-align-center p-justify-center ">
+      <div class="button p-grid">
         <Button @click="save" label="Salvar" class="p-button-info p-button-rounded" />
       </div>
     </div>
@@ -57,4 +57,8 @@ export default {
 </script>
 
 <style>
+.button{
+  
+  margin: 1em 10px 1em;
+}
 </style>
