@@ -10,5 +10,8 @@ export default {
     },
     delete:(employee)=>{
         return http.delete('employee/'+employee._id)
+    },
+    update:(employee)=>{
+        return http.put('employee/'+employee._id)
     }
 }

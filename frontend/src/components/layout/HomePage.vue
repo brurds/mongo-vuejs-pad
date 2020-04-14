@@ -89,8 +89,8 @@
         </Accordion>
       </TabPanel>
     </TabView>
-    <div style="width: 100%">
-      <div class="p-grid" style="text-align: center">
+    <div class="card">
+      <div class="p-grid" >
         <Card class="p-col-6">
           <template slot="header">
             <img alt="user header" src="../../assets/img/atendimento-ao-cliente.png" />
@@ -134,4 +134,8 @@ export default {
 </script>
 
 <style>
+.card{
+  margin: 10px 10px 10px;
+  text-align: center;
+}
 </style>

@@ -14,6 +14,7 @@ import Button from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup'; 
+import Dialog from 'primevue/dialog';
 
 Vue.component("Dropdown",Dropdown)
 Vue.component("InputText",InputText);
@@ -21,6 +22,7 @@ Vue.component("Button", Button);
 Vue.component("ColumnGroup", ColumnGroup);
 Vue.component("Column", Column);
 Vue.component("DataTable", DataTable);
+Vue.component("Dialog", Dialog);
 
 Vue.use(VueRouter);
 const router = new VueRouter({

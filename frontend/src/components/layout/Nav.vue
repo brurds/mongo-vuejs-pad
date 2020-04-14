@@ -32,9 +32,9 @@ export default {
               to: "/employee/add"
             },
             {
-              label: "Alterar",
+              label: "Listar todos",
               icon: "pi pi-fw pi-user",
-              to: "/employee/edit"
+              to: "/employee/list"
             }
           ]
         }

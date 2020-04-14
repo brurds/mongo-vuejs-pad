@@ -1,6 +1,7 @@
 
 import HomePage from '@/components/layout/HomePage.vue'
-import EmployeePage from '@/components/employees/EmployeePage.vue'
+import EmployeeAdd from '@/components/employees/EmployeeAddPage.vue'
+import EmployeeList from './components/employees/EmployeeListPage.vue'
 
 
 
@@ -12,21 +13,16 @@ export const routes = [
   },
   {
     path: '/employee/add',
-    name: 'EmployeePageAdd',
-    component: EmployeePage,
-    props: {
-      pageType: 'add'
-    }
-  },
+    name: 'EmployeeAdd',
+    component: EmployeeAdd
+   
+  },,
   {
-    path: '/employee/edit',
-    name: 'employeePageEdit',
-    component: EmployeePage,
-    props: {
-      pageType: 'edit'
-    }
-  },
+    path: '/employee/list',
+    name: 'EmployeeList',
+    component: EmployeeList
+   
+  }
+    
 ]
-
-
 
