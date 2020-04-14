@@ -12,13 +12,21 @@
 import Nav from "./components/layout/Nav.vue";
 import Footer from "./components/layout/Footer.vue";
 
+
 export default {
   name: "App",
   components: {
     Nav,
     Footer
-  }
-};
+  },
+  data(){
+    return{    
+    }
+  } 
+  
+}
+
+
 </script>
 
 <style>

@@ -3,23 +3,23 @@
     <div class="p-col-6">
       <h3>Nome</h3>
       <span class="p-float-label">
-        <InputText id="name" type="text" v-model="employee.name" />
-        <label for="name">Digite seu nome</label>
+        <InputText id="name" type="text" v-model="lname" />
+        <label for="name">Digite o nome</label>
       </span>
     </div>
 
     <div class="p-col-6">
       <h3>Cargo</h3>
       <span class="p-float-label">
-        <InputText id="position" type="number" v-model="employee.position" />
-        <label for="position">Digite a matricula</label>
+        <InputText id="position" type="text" v-model="lposition" />
+        <label for="position">Digite o cargo</label>
       </span>
     </div>
 
     <div class="p-col-6">
       <h3>Area Funcional</h3>
       <span class="p-float-label">
-        <InputText id="functional" type="text" v-model="employee.functional" />
+        <InputText id="functional" type="text" v-model="lfunctional" />
         <label for="functional">Digite a area</label>
       </span>
     </div>
@@ -27,8 +27,8 @@
     <div class="p-col-6 ">
       <h3>Registro</h3>
       <span class="p-float-label">
-        <InputText id="cargo" type="text" v-model="employee.register" />
-        <label for="cargo">Digite numero de registro</label>
+        <InputText id="cargo" type="text" v-model="lregister" />
+        <label for="cargo">Digite o registro</label>
       </span>
     </div>
   </div>
@@ -36,20 +36,38 @@
 
 <script>
 export default {
+  props: {
+    name: "",
+    position: "",
+    functional: "",
+    position: ""   
+  },
   data() {
     return {
-      employee: {
-        name: "",
-        position: "",
-        functional: "",
-        register: ""
-      }
-    };
+      lname: "",
+      lposition: "",
+      lfunctional: "",
+      lregister: ""
+    }
+  },
+  created() {},
+  watch: {
+    lname(newValue) {
+      this.$emit("update:name", newValue);
+    },
+    lposition(newValue) {
+      this.$emit("update:position", newValue);
+    },  
+    lfunctional(newValue) {
+       this.$emit("update:functional",newValue);
+    }, 
+    lregister(newValue) {
+       this.$emit("update:register", newValue);
+    } 
+          
   }
+  
 };
 </script>
 
-<style>
-
-
-</style>
+<style></style>

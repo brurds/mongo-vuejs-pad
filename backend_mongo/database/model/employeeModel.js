@@ -9,10 +9,7 @@ const Schema = mongoose.Schema;
 
 module.exports = mongoose.model('Employee', new Schema(
     {
-        name:{
-            type:String,
-            required:true
-        },
+        name:String,
         position:String,
         functional:String,
         register:Number

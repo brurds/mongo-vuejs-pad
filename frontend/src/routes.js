@@ -3,6 +3,7 @@ import HomePage from '@/components/layout/HomePage.vue'
 import EmployeePage from '@/components/employees/EmployeePage.vue'
 
 
+
 export const routes = [
   {
     path: '/',
