@@ -8,7 +8,7 @@ export default {
     save:(employee)=>{
         return http.post('employee',employee)
     },
-    delete:(_id)=>{
-        return http.delete('employee/:id',{data:_id})
+    delete:(employee)=>{
+        return http.delete('employee/'+employee._id)
     }
 }

@@ -37,7 +37,7 @@
         </template>
       </Column>
     </DataTable>
-    {{ selectedEmployee }}
+   
   </div>
 </template>
 
@@ -67,13 +67,16 @@ export default {
       });
     },
     Delete() {
-     if (!selectedEmployee){
-       confirm('selecione um colaborador para deletar');
-       }else{
+      console.log(this.selectedEmployee);
+      // if (!selectedEmployee){
+      //  confirm('selecione um colaborador para deletar');
+      // }else{
         Employee.delete(this.selectedEmployee)
-          .then(res => console.log(res))
+          .then(res => {
+            console.log(res)
+            res.send('removed')           
+          })
           .catch(err => console.log(err));
-      }
     },
     onRowSelect(event) {
       this.$toast.add({

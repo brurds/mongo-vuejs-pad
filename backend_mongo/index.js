@@ -30,6 +30,7 @@ app.get("/employee", function (req, res) {
 
 app.post("/employee", function (req, res) {
   let employee = new employeeModel(req.body);
+  console.log(req.body);
   employee.save()
     .then(() => res.send(employee))
     .catch((err) => {
@@ -43,8 +44,9 @@ app.delete("/employee/:id", function (req, res) {
   let id = req.params.id;
   employeeModel
     .deleteOne({ _id: id })
-    .then(() => res.send("Removed"))
-    .catch(function (err) {
+    .then(() =>    
+      res.send("Removed"))
+      .catch(function (err) {
       console.log(err);
       res.send(err);
     });
