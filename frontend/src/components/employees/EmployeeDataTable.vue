@@ -82,42 +82,35 @@ export default {
     };
   },
   mounted() {
-    Employee.listAll()
-      .then(res => {
-        this.employees = res.data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.List();
   },
   methods: {
     List() {
       Employee.listAll()
         .then(res => {
+          console.log("cheguei",res.data);
           this.employees = res.data;
         })
         .catch(error => console.log(error));
     },
 
     Delete() {
-      confirm("deseja realmente deletar");
-      if (confirm) {
+      if (confirm("deseja realmente deletar")) {
         Employee.delete(this.selectedEmployee)
           .then(res => {
             console.log(res);
+          })
+          .then(()=> {
+            this.List();
           })
           .catch(error => {
             console.log(error);
           });
 
-        Employee.listAll()
-          .then(res => {
-            this.employees = res.data;
-          })
-          .catch(err => {
-            console.log(err);
-          });
-
+        this.dialogVisible = false;
+        this.employee = undefined;
+        this.selectedEmployee = undefined;
+      } else {
         this.dialogVisible = false;
         this.employee = undefined;
         this.selectedEmployee = undefined;

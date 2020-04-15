@@ -12,6 +12,6 @@ export default {
         return http.delete('employee/'+employee._id)
     },
     update:(employee)=>{
-        return http.put('employee/'+employee._id)
+        return http.put('employee/'+employee._id,employee)
     }
 }
