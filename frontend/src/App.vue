@@ -10,23 +10,16 @@
 
 <script>
 import Nav from "./components/layout/Nav.vue";
-import Footer from "./components/layout/Footer.vue";
-
 
 export default {
   name: "App",
   components: {
-    Nav,
-    Footer
+    Nav
   },
-  data(){
-    return{    
-    }
-  } 
-  
-}
-
-
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style>
@@ -38,6 +31,5 @@ export default {
   color: #2c3e50;
   margin-top: 50px;
   margin-bottom: 50px;
-  
 }
 </style>

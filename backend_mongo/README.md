@@ -12,7 +12,7 @@ docker-compose up
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve run nodemon localhost:3000
 npm start
 
 

@@ -1,9 +1,7 @@
 
-import HomePage from '@/components/layout/HomePage.vue'
-import EmployeeAdd from '@/components/employees/EmployeeAddPage.vue'
-import EmployeeList from './components/employees/EmployeeListPage.vue'
-
-
+import HomePage from '@/components/page/HomePage.vue'
+import EmployeeAdd from '@/components/page/EmployeeAddPage.vue'
+import EmployeeList from '@/components/page/EmployeeListPage.vue'
 
 export const routes = [
   {
@@ -15,14 +13,14 @@ export const routes = [
     path: '/employee/add',
     name: 'EmployeeAdd',
     component: EmployeeAdd
-   
-  },,
+
+  },
   {
     path: '/employee/list',
     name: 'EmployeeList',
     component: EmployeeList
-   
+
   }
-    
+
 ]
 

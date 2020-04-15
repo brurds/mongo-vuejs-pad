@@ -8,7 +8,6 @@
       data-key="_id"
       :paginator="true"
       :rows="20"
-       class="p-datatable-responsive"
     >
       <template #header>
         <div style="line-height:1.87em" class="p-clearfix">
@@ -36,21 +35,18 @@
           <div class="p-col-8">
             <InputText id="_id" v-model="selectedEmployee._id" :disabled="true" autocomplete="off" />
           </div>
-
           <div class="p-col-4">
             <label for="name">Nome</label>
           </div>
           <div class="p-col-8">
             <InputText id="name" v-model="selectedEmployee.name" autocomplete="off" />
           </div>
-
           <div class="p-col-4">
             <label for="position">Cargo</label>
           </div>
           <div class="p-col-8">
             <InputText id="position" v-model="selectedEmployee.position" autocomplete="off" />
           </div>
-
           <div class="p-col-4">
             <label for="functional">Area funcional</label>
           </div>
@@ -65,13 +61,11 @@
           </div>
         </div>
       </div>
-
       <template #footer>
         <Button label="Apagar" icon="pi pi-times" @click="Delete" class="p-button-danger" />
         <Button label="Salvar" icon="pi pi-check" @click="Update" class="p-button-success" />
       </template>
     </Dialog>
-    {{selectedEmployee}}
   </div>
 </template>
 
@@ -87,7 +81,6 @@ export default {
       dialogVisible: false
     };
   },
-
   mounted() {
     Employee.listAll()
       .then(res => {
@@ -105,6 +98,7 @@ export default {
         })
         .catch(error => console.log(error));
     },
+
     Delete() {
       confirm("deseja realmente deletar");
       if (confirm) {
@@ -151,11 +145,7 @@ export default {
 
 
 <style >
-
 .body {
- 
   margin: 10px 10px 10px;
 }
-
-
 </style>

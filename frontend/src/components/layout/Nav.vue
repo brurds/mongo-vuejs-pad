@@ -5,14 +5,8 @@
 </template>
 
 <script>
-import Menubar from "primevue/menubar";
-
 export default {
   name: "Nav",
-
-  components: {
-    Menubar
-  },
 
   data() {
     return {

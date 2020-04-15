@@ -16,6 +16,13 @@ import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup'; 
 import Dialog from 'primevue/dialog';
 import Message from 'primevue/message';
+import Panel from "primevue/panel";
+import TabView from "primevue/tabview";
+import TabPanel from "primevue/tabpanel";
+import Accordion from "primevue/accordion";
+import AccordionTab from "primevue/accordiontab";
+import Card from "primevue/card";
+import Menubar from "primevue/menubar";
 
 Vue.component("Dropdown",Dropdown)
 Vue.component("InputText",InputText);
@@ -25,6 +32,13 @@ Vue.component("Column", Column);
 Vue.component("DataTable", DataTable);
 Vue.component("Dialog", Dialog);
 Vue.component("Message", Message);
+Vue.component("Panel", Panel);
+Vue.component("TabView", TabView);
+Vue.component("TabPanel", TabPanel);
+Vue.component("Accordion", Accordion);
+Vue.component("AccordionTab", AccordionTab);
+Vue.component("Card", Card);
+Vue.component("Menubar", Menubar);
 
 Vue.use(VueRouter);
 const router = new VueRouter({

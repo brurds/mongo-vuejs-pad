@@ -1,10 +1,10 @@
 <template>
   <div class="p-grid p-fluid p-align-center">
     <div>
-      <div class="border card card-w-title">
+      <div class="form-style card card-w-title">
         <h1>Formulario</h1>
         <div class="p-grid">
-          <div class="p-col-12 p-md-6 p-lg-3">
+          <div class="p-col-6">
             <h3>Nome</h3>
             <span class="p-float-label">
               <InputText id="name" type="text" v-model="lname" />
@@ -12,7 +12,7 @@
             </span>
           </div>
 
-          <div class="p-col-12 p-md-6 p-lg-3">
+          <div class="p-col-6">
             <h3>Cargo</h3>
             <span class="p-float-label">
               <InputText id="position" type="text" v-model="lposition" />
@@ -20,7 +20,7 @@
             </span>
           </div>
 
-          <div class="p-col-12 p-md-6 p-lg-3">
+          <div class="p-col-6">
             <h3>Area Funcional</h3>
             <span class="p-float-label">
               <InputText id="functional" type="text" v-model="lfunctional" />
@@ -28,7 +28,7 @@
             </span>
           </div>
 
-          <div class="p-col-12 p-md-6 p-lg-3">
+          <div class="p-col-6">
             <h3>Registro</h3>
             <span class="p-float-label">
               <InputText id="cargo" type="text" v-model="lregister" />
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style scoped>
-.border{
+.form-style {
   margin: 1em 1em 1em;
   padding: 1em 1em 1em;
   border: 3px solid black;
