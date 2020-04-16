@@ -88,7 +88,6 @@ export default {
     List() {
       Employee.listAll()
         .then(res => {
-          console.log("cheguei",res.data);
           this.employees = res.data;
         })
         .catch(error => console.log(error));
