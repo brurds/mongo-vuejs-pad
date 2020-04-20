@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Nav />
 
+    <Nav />
+    <Toast/>
     <router-view></router-view>
 
     <Footer />

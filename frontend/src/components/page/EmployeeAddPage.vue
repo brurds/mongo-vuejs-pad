@@ -1,8 +1,7 @@
 <template>
   <div>
     <div>
-      
-      <div >
+      <div>
         <EmployeeForm
           :name.sync="employee.name"
           :position.sync="employee.position"
@@ -24,7 +23,7 @@ import Employee from "../../service/employee";
 
 export default {
   components: {
-    EmployeeForm,
+    EmployeeForm
   },
 
   data() {
@@ -37,28 +36,26 @@ export default {
       }
     };
   },
-  
-  props: {
-    name: String,
-    position: String,
-    functional: String,
-    position: String
-  },
-  
+
   methods: {
     save() {
       Employee.save(this.employee)
-        .then(res => console.log(res))
-        .catch(err => res.send(err));
-      alert('Cadastro realizado');   
+        .then(res => {
+          console.log(res);
+          this.$toast.add({severity:'success', summary: 'Cadastro', detail:'Cadastro realizado com sucesso', life: 3000});
+        })
+        .catch(error => {
+          console.log(error)
+          this.$toast.add({severity:'Error', summary: 'Cadastro', detail:'Erro ao cadastrar, verifique os campos', life: 3000});        
+        });
+      
     }
   }
 };
 </script>
 
 <style>
-.button{
-  
+.button {
   margin: 1em 10px 1em;
 }
 </style>

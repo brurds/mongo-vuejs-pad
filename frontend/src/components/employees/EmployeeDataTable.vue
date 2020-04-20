@@ -1,7 +1,7 @@
 <template>
   <div class="body p-justify-center">
     <DataTable
-      :value="employees"
+      :value="employeesDataTable"
       selectionMode="single"
       :selection.sync="selectedEmployee"
       @row-select="onRowSelect"
@@ -11,7 +11,7 @@
     >
       <template #header>
         <div style="line-height:1.87em" class="p-clearfix">
-          <Button @click="List" icon="pi pi-refresh" style="float: left" />Lista de Colaboradores
+          <Button @click="list" icon="pi pi-refresh" style="float: left" />Lista de Colaboradores
         </div>
       </template>
       <Column field="_id" header="Id" :sortable="true"></Column>
@@ -20,7 +20,7 @@
       <Column field="functional" header="Area funcional" :sortable="true"></Column>
       <Column field="register" header="Registro" :sortable="true"></Column>
     </DataTable>
-
+    <!--row alter in table-->
     <Dialog
       :visible.sync="dialogVisible"
       :style="{width: '400px'}"
@@ -57,13 +57,37 @@
             <label for="register">Registro</label>
           </div>
           <div class="p-col-8">
-            <InputText id="register" v-model="selectedEmployee.register" autocomplete="off" />
+            <InputText id="register" v-model="selectedEmployee.register" autocomplete="off" type="number" max="9" />
           </div>
         </div>
       </div>
       <template #footer>
-        <Button label="Apagar" icon="pi pi-times" @click="Delete" class="p-button-danger" />
-        <Button label="Salvar" icon="pi pi-check" @click="Update" class="p-button-success" />
+        <Button label="Apagar" icon="pi pi-times" @click="confirmation" class="p-button-danger" />
+        <Button
+          label="Cancelar"
+          icon="pi pi-directions-alt"
+          @click="dialogVisible=false"
+          class="p-button-info"
+        />
+        <Button label="Alterar" icon="pi pi-check" @click="update" class="p-button-success" />
+      </template>
+    </Dialog>
+    <!--confirme popup-->
+    <Dialog
+      :visible.sync="dialogDeleteVisible"
+      :style="{width: '400px'}"
+      header="Confirmação"
+      :modal="true"
+    >
+      <div class="p-cardialog-content">Deseja realmente deletar?</div>
+      <template #footer>
+        <Button label="Cancelar" icon="pi pi-times " @click="cancelDelete" class="p-button-danger" />
+        <Button
+          label="Confirmar"
+          icon="pi pi-check"
+          @click="confirmDelete"
+          class="p-button-success"
+        />
       </template>
     </Dialog>
   </div>
@@ -75,51 +99,72 @@ import Employee from "../../service/employee";
 export default {
   data() {
     return {
-      employees: undefined,
+      employeesDataTable: undefined,
       employee: undefined,
       selectedEmployee: undefined,
-      dialogVisible: false
+      dialogVisible: false,
+      dialogDeleteVisible: false
     };
   },
   mounted() {
-    this.List();
+    this.list();
   },
   methods: {
-    List() {
+    confirmation() {
+      this.dialogVisible = false;
+      this.dialogDeleteVisible = true;
+    },
+
+    confirmDelete() {
+      this.deleted();
+      this.dialogVisible = false;
+      this.dialogDeleteVisible = false;
+    },
+
+    cancelDelete() {
+      this.dialogDeleteVisible = false;
+      this.dialogVisible = true;
+    },
+
+    list() {
       Employee.listAll()
         .then(res => {
-          this.employees = res.data;
+          this.employeesDataTable = res.data;
         })
         .catch(error => console.log(error));
     },
 
-    Delete() {
-      if (confirm("deseja realmente deletar")) {
-        Employee.delete(this.selectedEmployee)
-          .then(res => {
-            console.log(res);
-          })
-          .then(()=> {
-            this.List();
-          })
-          .catch(error => {
-            console.log(error);
+    deleted() {
+      Employee.delete(this.selectedEmployee)
+        .then(res => {
+          console.log(res);
+          this.$toast.add({
+            severity: "success",
+            summary: "Remover",
+            detail: "Cadastro removido com sucesso",
+            life: 3000
           });
-
-        this.dialogVisible = false;
-        this.employee = undefined;
-        this.selectedEmployee = undefined;
-      } else {
-        this.dialogVisible = false;
-        this.employee = undefined;
-        this.selectedEmployee = undefined;
-      }
+        })
+        .then(() => {
+          this.list();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      this.employee = undefined;
+      this.selectedEmployee = undefined;
     },
 
-    Update() {
+    update() {
       Employee.update(this.selectedEmployee)
         .then(res => {
           console.log(res);
+          this.$toast.add({
+            severity: "success",
+            summary: "Alterar",
+            detail: "Cadastro alterado com sucesso",
+            life: 3000
+          });
         })
         .catch(err => console.log(err));
       this.dialogVisible = false;
@@ -135,8 +180,7 @@ export default {
 };
 </script>
 
-
-<style >
+<style scoped>
 .body {
   margin: 10px 10px 10px;
 }

@@ -23,6 +23,8 @@ import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
 import Card from "primevue/card";
 import Menubar from "primevue/menubar";
+import ToastService from 'primevue/toastservice';
+import Toast from 'primevue/toast';
 
 Vue.component("Dropdown",Dropdown)
 Vue.component("InputText",InputText);
@@ -39,7 +41,9 @@ Vue.component("Accordion", Accordion);
 Vue.component("AccordionTab", AccordionTab);
 Vue.component("Card", Card);
 Vue.component("Menubar", Menubar);
+Vue.component("Toast", Toast);
 
+Vue.use(ToastService);
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
