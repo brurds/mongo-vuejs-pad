@@ -1,45 +1,18 @@
-const employeeModel = require("../database/model/employeeModel");
-const connection = require("../database/connection");
+const EmployessCRUD = require("../database/employeeCRUD");
+const employessCRUD = new EmployessCRUD();
 
-connection();
 class EmployeeController {
     get() {
-        return function (req, res) {
-            employeeModel
-                .find()
-                .then((listAll) => res.send(listAll))
-                .catch((err) => res.send(err));
-        }
+        return employessCRUD.get();
     };
-
     post() {
-        return function (req, res) {
-            let employee = new employeeModel(req.body);
-            console.log(req.body);
-            employee.save()
-                .then(() => res.send(employee))
-                .catch((err) => res.send(err));
-        }
+        return employessCRUD.post();
     };
-
     delete() {
-        return function (req, res) {
-            let id = req.params.id;
-            employeeModel
-                .deleteOne({ _id: id })
-                .then(() => res.send("Removed"))
-                .catch((error) => res.send(error));
-        }
+        return employessCRUD.delete();
     };
-
     put() {
-        return function (req, res) {
-            let id = req.params.id;
-            employeeModel
-                .updateOne({ _id: id }, req.body)
-                .then(() => res.send('update'))
-                .catch((error) => res.send(error));
-        }
+        return employessCRUD.put();
     };
 }
 

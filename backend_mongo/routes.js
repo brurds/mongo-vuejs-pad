@@ -1,15 +1,15 @@
-const EmployeeControlador = require('./controller/employee');
-const controller = new EmployeeControlador();
+const EmployeeController= require('./controller/employee');
+const employeeController = new EmployeeController();
 const express = require('express');
 const routes = express.Router();
 
 
 routes.route("/employee")
-    .get(controller.get())
-    .post(controller.post());
+    .get(employeeController.get())
+    .post(employeeController.post());
 
 routes.route("/employee/:id")
-    .delete(controller.delete())
-    .put(controller.put());
+    .delete(employeeController.delete())
+    .put(employeeController.put());
 
 module.exports = routes;
