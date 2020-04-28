@@ -17,6 +17,6 @@ module.exports = mongoose.model('Employee', new Schema(
         },
         register: {
             type: Number,
-            required: true
+            required: true,
         }
     }));

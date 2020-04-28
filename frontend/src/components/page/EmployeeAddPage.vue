@@ -7,6 +7,7 @@
           :position.sync="employee.position"
           :functional.sync="employee.functional"
           :register.sync="employee.register"
+          @save="save"
         />
       </div>
 
@@ -42,13 +43,26 @@ export default {
       Employee.save(this.employee)
         .then(res => {
           console.log(res);
-          this.$toast.add({severity:'success', summary: 'Cadastro', detail:'Cadastro realizado com sucesso', life: 3000});
+          this.$toast.add({
+            severity: "success",
+            summary: "Cadastro",
+            detail: "Cadastro realizado com sucesso",
+            life: 3000
+          });
         })
         .catch(error => {
-          console.log(error)
-          this.$toast.add({severity:'Error', summary: 'Cadastro', detail:'Erro ao cadastrar, verifique os campos', life: 3000});        
+          console.log(error);
+          this.$toast.add({
+            severity: "Error",
+            summary: "Cadastro",
+            detail: "Erro ao cadastrar, verifique os campos",
+            life: 3000
+          });
         });
-      
+        this.cleanFields;
+    },
+    cleanFields: function(){
+      this.emit("clean");
     }
   }
 };

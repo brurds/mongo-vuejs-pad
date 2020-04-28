@@ -1,5 +1,6 @@
 const employeeModel = require("./model/employeeModel");
 const connection = require("./connection");
+//const { check, validationResult } = require('express-validator');
 
 connection();
 
@@ -15,10 +16,13 @@ class EmployeeCRUD {
     post() {
         return function (req, res) {
             let employee = new employeeModel(req.body);
-            console.log(req.body);
             employee.save()
-                .then(() => res.send(employee))
-                .catch((err) => res.send(err));
+                .then(() => {
+                    res.send(employee).status(201);
+                })
+                .catch((error) => {
+                    res.status(400).send(error);
+                });
         }
     };
     delete() {
@@ -32,11 +36,16 @@ class EmployeeCRUD {
     };
     put() {
         return function (req, res) {
+
             let id = req.params.id;
             employeeModel
                 .updateOne({ _id: id }, req.body)
-                .then(() => res.send('update'))
-                .catch((error) => res.send(error));
+                .then(() => {
+                    res.send('update').status(202);
+                })
+                .catch((error) => {
+                    res.send(error).status(400);
+                });
         }
     };
 }
