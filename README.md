@@ -1,1 +1,1 @@
-# Projeto utilizando Vue.js, Mongo, Node e PrimeVue.
+# Projeto utilizando Node, Vue.js, PrimeVue e Mongo.
