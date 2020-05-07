@@ -57,7 +57,7 @@
             <label for="register">Registro</label>
           </div>
           <div class="p-col-8">
-            <InputText id="register" v-model="selectedEmployee.register" autocomplete="off" type="number" max="9" />
+            <InputText id="register" v-model="selectedEmployee.register" autocomplete="off" type="number"/>
           </div>
         </div>
       </div>

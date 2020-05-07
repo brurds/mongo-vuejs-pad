@@ -1,9 +1,3 @@
-
-
-
-
-
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -23,6 +17,6 @@ module.exports = mongoose.model('Employee', new Schema(
         },
         register: {
             type: Number,
-            required: true
+            required: true,
         }
     }));

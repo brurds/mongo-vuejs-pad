@@ -1,13 +1,14 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
+import Vue from 'vue';
+import App from './App';
+import Vuelidate from 'vuelidate';
 import VueRouter from 'vue-router';
-import { routes } from './routes'
-import 'primeflex/primeflex.css'
-import 'primevue/resources/themes/nova-light/theme.css'      //theme
-import 'primevue/resources/primevue.min.css'                 //shared css
-import 'primeicons/primeicons.css'                           //icons 
+import { routes } from './routes';
+import 'primeflex/primeflex.css';
+import 'primevue/resources/themes/nova-light/theme.css';      //theme
+import 'primevue/resources/primevue.min.css';                 //shared css
+import 'primeicons/primeicons.css';                           //icons 
 import Dropdown from "primevue/dropdown";
 import InputText from "primevue/inputtext";
 import Button from 'primevue/button';
@@ -26,7 +27,7 @@ import Menubar from "primevue/menubar";
 import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
 
-Vue.component("Dropdown",Dropdown)
+Vue.component("Dropdown",Dropdown);
 Vue.component("InputText",InputText);
 Vue.component("Button", Button);
 Vue.component("ColumnGroup", ColumnGroup);
@@ -43,6 +44,7 @@ Vue.component("Card", Card);
 Vue.component("Menubar", Menubar);
 Vue.component("Toast", Toast);
 
+Vue.use(Vuelidate);
 Vue.use(ToastService);
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -57,4 +59,5 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+  
 })

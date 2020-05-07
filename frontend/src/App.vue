@@ -12,6 +12,8 @@
 <script>
 import Nav from "./components/layout/Nav.vue";
 
+
+
 export default {
   name: "App",
   components: {
