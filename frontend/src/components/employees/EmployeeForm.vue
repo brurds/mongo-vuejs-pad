@@ -1,54 +1,84 @@
 <template>
-  <div class="p-grid p-fluid p-align-center">
-    <div>
-      <div class="form-style card card-w-title">
-        <h1>Formulario</h1>
-        <div class="p-grid">
-          <div class="p-col-6">
+  <div class="p-grid p-fluid ">
+    <div class="div-flex">
+      <div>
+        <h1 class="form-title">Formulario de Colaboradores</h1>
+        <div class="p-grid form-style border">
+          <div class="p-col-12  ">
             <h3>Nome</h3>
             <span class="p-float-label">
-              <InputText id="name" type="text" v-model.trim="$v.name.$model" />
+              <InputText id="name" type="text" v-model.trim="$v.employee.name.$model" />
               <label for="name">Digite o nome</label>
             </span>
-            <p class="error" v-if="validateRequired($v.name)">{{msg.required}}</p>
-            <p class="error" v-if="validadeMinLength($v.name)">{{msg.minLength}}</p>
+            <p class="error" v-if="validateRequired($v.employee.name)">
+              {{ msg.required }}
+            </p>
+            <p class="error" v-if="validadeMinLength($v.employee.name)">
+              {{ msg.minLength }}
+            </p>
           </div>
-          <div class="p-col-6">
+          <div class="p-col-12">
             <h3>Cargo</h3>
             <span class="p-float-label">
-              <InputText id="position" type="text" v-model.trim="$v.position.$model" />
+              <InputText
+                id="position"
+                type="text"
+                v-model.trim="$v.employee.position.$model"
+              />
               <label for="position">Digite o cargo</label>
             </span>
-            <p class="error" v-if="validateRequired($v.position)">{{msg.required}}</p>
-            <p class="error" v-if="validadeMinLength($v.position)">{{msg.minLength}}</p>
+            <p class="error" v-if="validateRequired($v.employee.position)">
+              {{ msg.required }}
+            </p>
+            <p class="error" v-if="validadeMinLength($v.employee.position)">
+              {{ msg.minLength }}
+            </p>
           </div>
-          <div class="p-col-6">
+          <div class="p-col-12">
             <h3>Area Funcional</h3>
             <span class="p-float-label">
-              <InputText id="functional" type="text" v-model.trim="$v.functional.$model" />
+              <InputText
+                id="functional"
+                type="text"
+                v-model.trim="$v.employee.functional.$model"
+              />
               <label for="functional">Digite a area</label>
             </span>
-            <p class="error" v-if="validateRequired($v.functional)">{{msg.required}}</p>
-            <p class="error" v-if="validadeMinLength($v.functional)">{{msg.minLength}}</p>
+            <p class="error" v-if="validateRequired($v.employee.functional)">
+              {{ msg.required }}
+            </p>
+            <p class="error" v-if="validadeMinLength($v.employee.functional)">
+              {{ msg.minLength }}
+            </p>
           </div>
-          <div class="p-col-6">
+          <div class="p-col-12">
             <h3>Registro</h3>
             <span class="p-float-label">
               <InputText
                 id="register"
                 type="number"
-                v-model.trim="$v.register.$model"
+                v-model.trim="$v.employee.register.$model"
                 v-on:keyup.enter="save"
               />
               <label for="register">Digite o registro</label>
             </span>
-            <p class="error" v-if="validateRequired($v.register)">{{msg.required}}</p>
-            <p class="error" v-if="validadeMinLength($v.register)">{{msg.minLength}}</p>
-            <p class="error" v-if="validadeMaxValue($v.register)">{{msg.maxValue}}</p>
+            <p class="error" v-if="validateRequired($v.employee.register)">
+              {{ msg.required }}
+            </p>
+            <p class="error" v-if="validadeMinLength($v.employee.register)">
+              {{ msg.minLength }}
+            </p>
+            <p class="error" v-if="validadeMaxValue($v.employee.register)">
+              {{ msg.maxValue }}
+            </p>
           </div>
-          <div class="p-col-align-center div-flex">
-            <Button @click="save()" label="Salvar" class="p-button-info p-button-rounded btn-size" />
-          </div>
+        </div>
+        <div class="div-flex">
+          <Button
+            @click="save()"
+            label="Salvar"
+            class="p-button-info p-button-rounded btn-size"
+          />
         </div>
       </div>
     </div>
@@ -58,15 +88,11 @@
 <script>
 import Employee from "../../service/employee";
 import { required, minLength, maxValue } from "vuelidate/lib/validators";
+import employee from '../../service/employee';
 
 export default {
   data() {
     return {
-      name: "",
-      position: "",
-      functional: "",
-      register: "",
-
       employee: {
         name: "",
         position: "",
@@ -81,33 +107,27 @@ export default {
     };
   },
   validations: {
-    name: {
-      required,
-      minLength: minLength(3)
-    },
-    position: {
-      required,
-      minLength: minLength(3)
-    },
-    functional: {
-      required,
-      minLength: minLength(3)
-    },
-    register: {
-      required,
-      minLength: minLength(3),
-      maxValue: maxValue(999999999)
+    employee: {
+      name: {
+        required,
+        minLength: minLength(3)
+      },
+      position: {
+        required,
+        minLength: minLength(3)
+      },
+      functional: {
+        required,
+        minLength: minLength(3)
+      },
+      register: {
+        required,
+        minLength: minLength(3),
+        maxValue: maxValue(999999999)
+      }
     }
   },
   methods: {
-    creatEmployee() {
-      return (this.employee = {
-        name: this.name,
-        position: this.position,
-        functional: this.functional,
-        register: this.register
-      });
-    },
     validateRequired(field) {
       return !field.required;
     },
@@ -126,7 +146,7 @@ export default {
           life: 3000
         });
       } else {
-        Employee.save(this.creatEmployee())
+        Employee.save(this.employee)
           .then(res => {
             console.log(res);
             this.$toast.add({
@@ -148,10 +168,11 @@ export default {
       }
     },
     cleanFields() {
-      this.name = "";
-      this.position = "";
-      this.register = "";
-      this.functional = "";
+      
+      this.employee.name = "";
+      this.employee.position = "";
+      this.employee.register = "";
+      this.employee.functional = "";
     }
   }
 };
@@ -159,10 +180,10 @@ export default {
 
 <style scoped>
 .form-style {
-  margin: 1em 1em 1em;
-  padding: 1em 1em 1em;
-  border: 3px solid black;
-  border-radius: 10px;
+  margin: 10px 10px 10px;
+  padding: 10px 10px 10px;
+  border: 2px solid black;
+  border-radius: 20px;
 }
 .error {
   color: red;
@@ -173,7 +194,13 @@ export default {
   display: flex;
   justify-content: space-around;
 }
+.form-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
 .btn-size {
-  width: 20%;
+  margin: 10px 10px 10px;
+  width: 100px;
 }
 </style>

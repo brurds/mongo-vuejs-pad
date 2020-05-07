@@ -26,6 +26,7 @@ import Card from "primevue/card";
 import Menubar from "primevue/menubar";
 import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
+import Textarea from 'primevue/textarea';
 
 Vue.component("Dropdown",Dropdown);
 Vue.component("InputText",InputText);
@@ -43,6 +44,8 @@ Vue.component("AccordionTab", AccordionTab);
 Vue.component("Card", Card);
 Vue.component("Menubar", Menubar);
 Vue.component("Toast", Toast);
+Vue.component("Textarea", Textarea);
+
 
 Vue.use(Vuelidate);
 Vue.use(ToastService);

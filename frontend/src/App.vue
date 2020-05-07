@@ -1,26 +1,18 @@
 <template>
   <div id="app">
-
     <Nav />
-    <Toast/>
+    <Toast />
     <router-view></router-view>
-
-    <Footer />
   </div>
 </template>
 
 <script>
 import Nav from "./components/layout/Nav.vue";
 
-
-
 export default {
   name: "App",
   components: {
     Nav
-  },
-  data() {
-    return {};
   }
 };
 </script>

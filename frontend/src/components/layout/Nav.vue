@@ -26,9 +26,25 @@ export default {
               to: "/employee/add"
             },
             {
-              label: "Listar todos",
+              label: "Editar",
               icon: "pi pi-fw pi-user",
               to: "/employee/list"
+            }
+          ]
+        },
+        {
+          label: "Questionario",
+          icon: "pi pi-fw pi-file",
+          items: [
+             {
+              label: "Cadastrar",
+              icon: "pi pi-fw pi-pencil",
+              to: "/test/question"
+            },
+            {
+              label: "Elaborar",
+              icon: "pi pi-fw pi-file",
+              to: "/test/elaborate"
             }
           ]
         }
