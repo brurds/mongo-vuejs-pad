@@ -1,7 +1,7 @@
 
 import HomePage from '@/components/page/HomePage.vue'
-import EmployeeAdd from '@/components/page/EmployeeAddPage.vue'
-import EmployeeList from '@/components/page/EmployeeListPage.vue'
+import EmployeeAdd from '@/components/page/employee/EmployeeAddPage.vue'
+import EmployeeList from '@/components/page/employee/EmployeeListPage.vue'
 
 export const routes = [
   {

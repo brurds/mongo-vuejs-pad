@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import EmployeeForm from "../employees/EmployeeForm";
-import Employee from "../../service/employee";
+import EmployeeForm from "../../employees/EmployeeForm";
+import Employee from "../../../service/employee";
 
 export default {
   components: {
