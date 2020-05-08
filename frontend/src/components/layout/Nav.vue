@@ -21,12 +21,12 @@ export default {
           icon: "pi pi-fw pi-users",
           items: [
             {
-              label: "Cadastrar",
+              label: "Adicionar colaborador",
               icon: "pi pi-fw pi-user-plus",
               to: "/employee/add"
             },
             {
-              label: "Editar",
+              label: "Editar colaborador",
               icon: "pi pi-fw pi-user",
               to: "/employee/list"
             }
@@ -37,12 +37,12 @@ export default {
           icon: "pi pi-fw pi-file",
           items: [
              {
-              label: "Cadastrar",
+              label: "Adicionar questão",
               icon: "pi pi-fw pi-pencil",
               to: "/test/question"
             },
             {
-              label: "Elaborar",
+              label: "Elaborar questionario",
               icon: "pi pi-fw pi-file",
               to: "/test/elaborate"
             }

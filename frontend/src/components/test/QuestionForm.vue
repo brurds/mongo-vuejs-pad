@@ -73,10 +73,48 @@
               {{ msg.required }}
             </p>
           </div>
+          <div class="p-grid div-flex">
+            <div class="p-col-3">
+              <Checkbox
+                id="city1"
+                name="city"
+                value="Chicago"
+                v-model="cities"
+              />
+              <label for="city1" class="p-checkbox-label">Chicago</label>
+            </div>
+            <div class="p-col-3">
+              <Checkbox
+                id="city2"
+                name="city"
+                value="Los Angeles"
+                v-model="cities"
+              />
+              <label for="city2" class="p-checkbox-label">Los Angeles</label>
+            </div>
+            <div class="p-col-3">
+              <Checkbox
+                id="city3"
+                name="city"
+                value="New York"
+                v-model="cities"
+              />
+              <label for="city3" class="p-checkbox-label">New York</label>
+            </div>
+            <div class="p-col-3">
+              <Checkbox
+                id="city4"
+                name="city"
+                value="San Francisco"
+                v-model="cities"
+              />
+              <label for="city4" class="p-checkbox-label">San Francisco</label>
+            </div>
+          </div>
         </div>
         <div class="div-flex">
           <Button
-            @click="save()"
+            @click="cleanFields()"
             label="Salvar"
             class="p-button-info p-button-rounded btn-size"
           />
@@ -87,7 +125,7 @@
 </template>
 
 <script>
-import Test from "../../service/Test";
+import Question from "../../service/Question";
 import { required } from "vuelidate/lib/validators";
 
 export default {
@@ -141,7 +179,7 @@ export default {
           life: 3000
         });
       } else {
-        Test.save(this.question)
+        Question.save(this.question)
           .then(res => {
             console.log(res);
             this.$toast.add({
@@ -163,6 +201,7 @@ export default {
       }
     },
     cleanFields() {
+      this.question.body = "";
       this.question.answerA = "";
       this.question.answerB = "";
       this.question.answerC = "";
