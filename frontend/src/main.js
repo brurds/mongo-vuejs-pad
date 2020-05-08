@@ -27,7 +27,7 @@ import Menubar from "primevue/menubar";
 import ToastService from "primevue/toastservice";
 import Toast from "primevue/toast";
 import Textarea from "primevue/textarea";
-import Checkbox from "primevue/checkbox";
+import RadioButton from 'primevue/radiobutton';
 
 Vue.component("Dropdown", Dropdown);
 Vue.component("InputText", InputText);
@@ -46,7 +46,7 @@ Vue.component("Card", Card);
 Vue.component("Menubar", Menubar);
 Vue.component("Toast", Toast);
 Vue.component("Textarea", Textarea);
-Vue.component("Checkbox", Checkbox);
+Vue.component("RadioButton", RadioButton);
 
 Vue.use(Vuelidate);
 Vue.use(ToastService);

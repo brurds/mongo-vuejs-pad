@@ -1,9 +1,9 @@
-const employeeModel = require("./model/employeeModel");
+const questionModel = require("./model/questionModel");
 
-class EmployeeCRUD {
+class QuestionCRUD {
   get() {
     return function (req, res) {
-      employeeModel
+      questionModel
         .find()
         .then((listAll) => res.send(listAll))
         .catch((err) => res.send(err));
@@ -11,11 +11,11 @@ class EmployeeCRUD {
   }
   post() {
     return function (req, res) {
-      let employee = new employeeModel(req.body);
-      employee
+      let question = new questionModel(req.body);
+      question
         .save()
         .then(() => {
-          res.send(employee).status(201);
+          res.send(question).status(201);
         })
         .catch((error) => {
           res.status(400).send(error);
@@ -25,7 +25,7 @@ class EmployeeCRUD {
   delete() {
     return function (req, res) {
       let id = req.params.id;
-      employeeModel
+      questionModel
         .deleteOne({ _id: id })
         .then(() => res.send("Removed"))
         .catch((error) => res.send(error));
@@ -34,7 +34,7 @@ class EmployeeCRUD {
   put() {
     return function (req, res) {
       let id = req.params.id;
-      employeeModel
+      questionModel
         .updateOne({ _id: id }, req.body)
         .then(() => {
           res.send("update").status(202);
@@ -46,4 +46,4 @@ class EmployeeCRUD {
   }
 }
 
-module.exports = EmployeeCRUD;
+module.exports = QuestionCRUD;

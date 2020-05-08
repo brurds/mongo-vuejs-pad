@@ -1,6 +1,6 @@
 <template>
   <div class="body p-justify-center">
-    <DataTable
+    <DataTable 
       :value="employeesDataTable"
       selectionMode="single"
       :selection.sync="selectedEmployee"
@@ -11,7 +11,7 @@
     >
       <template #header>
         <div style="line-height:1.87em" class="p-clearfix">
-          <Button @click="list" icon="pi pi-refresh" style="float: left" />Lista de Colaboradores
+          <Button @click="listAllEmployee()" icon="pi pi-refresh" style="float: left" />Lista de Colaboradores
         </div>
       </template>
       <Column field="_id" header="Id" :sortable="true"></Column>
@@ -107,7 +107,7 @@ export default {
     };
   },
   mounted() {
-    this.list();
+    this.listAllEmployee();
   },
   methods: {
     confirmation() {
@@ -126,7 +126,7 @@ export default {
       this.dialogVisible = true;
     },
 
-    list() {
+    listAllEmployee() {
       Employee.listAll()
         .then(res => {
           this.employeesDataTable = res.data;
@@ -146,7 +146,7 @@ export default {
           });
         })
         .then(() => {
-          this.list();
+          this.listAllEmployee();
         })
         .catch(error => {
           console.log(error);

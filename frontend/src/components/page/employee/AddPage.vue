@@ -1,15 +1,10 @@
 <template>
   <div>
-    <div>
-      <div>
-        <EmployeeForm />
-      </div>
-      <div>
-        <Message severity="info" :life="10000" :sticky="false">
-        {{messages}}
-        </Message>
-      </div>
-    </div>
+    <EmployeeForm />
+
+    <Message severity="info" :life="10000" :sticky="false">
+      {{ messages }}
+    </Message>
   </div>
 </template>
 
@@ -28,4 +23,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style></style>

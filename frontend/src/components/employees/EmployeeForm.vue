@@ -1,10 +1,10 @@
 <template>
-  <div class="p-grid p-fluid ">
-    <div class="div-flex">
+  <div class="div-flex">
+    <div class="flex">
       <div>
-        <h1 class="form-title">Formulario de Colaboradores</h1>
-        <div class="p-grid form-style border">
-          <div class="p-col-12  ">
+        <h1 class="form-title">Formulário de colaboradores</h1>
+        <div class="p-grid p-fluid form-style border">
+          <div class=" p-lg-6 p-col-12">
             <h3>Nome</h3>
             <span class="p-float-label">
               <InputText id="name" type="text" v-model.trim="$v.employee.name.$model" />
@@ -17,7 +17,7 @@
               {{ msg.minLength }}
             </p>
           </div>
-          <div class="p-col-12">
+          <div class="p-lg-6 p-col-12">
             <h3>Cargo</h3>
             <span class="p-float-label">
               <InputText
@@ -34,7 +34,7 @@
               {{ msg.minLength }}
             </p>
           </div>
-          <div class="p-col-12">
+          <div class="p-lg-6 p-col-12">
             <h3>Area Funcional</h3>
             <span class="p-float-label">
               <InputText
@@ -51,7 +51,7 @@
               {{ msg.minLength }}
             </p>
           </div>
-          <div class="p-col-12">
+          <div class="p-lg-6 p-col-12">
             <h3>Registro</h3>
             <span class="p-float-label">
               <InputText
@@ -73,6 +73,7 @@
             </p>
           </div>
         </div>
+
         <div class="div-flex">
           <Button
             @click="save()"
@@ -88,7 +89,6 @@
 <script>
 import Employee from "../../service/employee";
 import { required, minLength, maxValue } from "vuelidate/lib/validators";
-import employee from '../../service/employee';
 
 export default {
   data() {
@@ -177,11 +177,12 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .form-style {
   margin: 10px 10px 10px;
   padding: 10px 10px 10px;
+}
+.border {
   border: 2px solid black;
   border-radius: 20px;
 }
@@ -191,8 +192,11 @@ export default {
 }
 .div-flex {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
+  display: flex;  
+  justify-content:space-around;
+}
+.flex{
+  width: 80%;
 }
 .form-title {
   width: 100%;

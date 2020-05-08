@@ -2,22 +2,34 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 module.exports = mongoose.model(
-  "Employee",
+  "Question",
   new Schema({
     name: {
       type: String,
       required: true,
     },
-    position: {
+    body: {
       type: String,
       required: true,
     },
-    functional: {
+    answerA: {
       type: String,
       required: true,
     },
-    register: {
-      type: Number,
+    answerB: {
+      type: String,
+      required: true,
+    },
+    answerC: {
+      type: String,
+      required: true,
+    },
+    answerD: {
+      type: String,
+      required: true,
+    },
+    correctAnswer: {
+      type: String,
       required: true,
     },
   })

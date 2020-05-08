@@ -1,10 +1,21 @@
 <template>
-  <div class="p-grid p-fluid">
-    <div class="div-flex">
+  <div class="div-flex">
+    <div class="flex">
       <div>
-        <h1 class="form-title">Formulario de questões</h1>
-        <div class="p-grid form-style border ">
-          <div class="p-col-12 p-offset">
+        <h1 class="form-title">Formulário de questões</h1>
+        <div class="p-grid p-fluid form-style border ">
+          <div>
+            <h3>Selecione o responsável</h3>
+            <Dropdown
+              v-model="selectedEmployee"
+              :options="employee"
+              optionLabel="name"
+              placeholder="Selecione o colaborador"
+              
+            />
+          </div>
+          
+          <div class="p-col-12">
             <h3>Pergunta</h3>
             <Textarea
               v-model.trim="question.body"
@@ -16,7 +27,7 @@
               {{ msg.required }}
             </p>
           </div>
-          <div class="p-col-6">
+          <div class="p-lg-6  p-col-12">
             <h3>Alternativa A</h3>
             <span class="p-float-label">
               <InputText
@@ -30,7 +41,7 @@
               {{ msg.required }}
             </p>
           </div>
-          <div class="p-col-6">
+          <div class="p-lg-6 p-col-12">
             <h3>Alternativa B</h3>
             <span class="p-float-label">
               <InputText
@@ -44,7 +55,7 @@
               {{ msg.required }}
             </p>
           </div>
-          <div class="p-col-6">
+          <div class="p-lg-6 p-col-12">
             <h3>Alternativa C</h3>
             <span class="p-float-label">
               <InputText
@@ -58,7 +69,7 @@
               {{ msg.required }}
             </p>
           </div>
-          <div class="p-col-6">
+          <div class="p-lg-6 p-col-12">
             <h3>Alternativa D</h3>
             <span class="p-float-label">
               <InputText
@@ -73,48 +84,61 @@
               {{ msg.required }}
             </p>
           </div>
-          <div class="p-grid div-flex">
-            <div class="p-col-3">
-              <Checkbox
-                id="city1"
-                name="city"
-                value="Chicago"
-                v-model="cities"
+          <div class="p-grid" >
+            <h3 class="p-col-12">Selecione alternativa correta</h3>
+            <div class="p-col-12 p-md-6 p-lg-3">
+              <RadioButton
+                id="answerA"
+                name="answer"
+                value="answerA"
+                v-model.trim="$v.question.correctAnswer.$model"
               />
-              <label for="city1" class="p-checkbox-label">Chicago</label>
+              <label for="answerA" class="p-radiobutton-label"
+                >Alternativa A</label
+              >
             </div>
-            <div class="p-col-3">
-              <Checkbox
-                id="city2"
-                name="city"
-                value="Los Angeles"
-                v-model="cities"
+            <div class="p-col-12 p-md-6 p-lg-3">
+              <RadioButton
+                id="answerB"
+                name="answer"
+                value="answerB"
+                v-model.trim="$v.question.correctAnswer.$model"
               />
-              <label for="city2" class="p-checkbox-label">Los Angeles</label>
+              <label for="answerB" class="p-radiobutton-label"
+                >Alternativa B</label
+              >
             </div>
-            <div class="p-col-3">
-              <Checkbox
-                id="city3"
-                name="city"
-                value="New York"
-                v-model="cities"
+            <div class="p-col-12 p-md-6 p-lg-3">
+              <RadioButton
+                id="answerC"
+                name="answer"
+                value="answerC"
+                v-model.trim="$v.question.correctAnswer.$model"
               />
-              <label for="city3" class="p-checkbox-label">New York</label>
+              <label for="answerC" class="p-radiobutton-label"
+                >Alternativa C</label
+              >
             </div>
-            <div class="p-col-3">
-              <Checkbox
-                id="city4"
-                name="city"
-                value="San Francisco"
-                v-model="cities"
+            <div class="p-col-12 p-md-6 p-lg-3">
+              <RadioButton
+                id="answerD"
+                name="answer"
+                value="answerD"
+                v-model.trim="$v.question.correctAnswer.$model"
               />
-              <label for="city4" class="p-checkbox-label">San Francisco</label>
+              <label for="answerD" class="p-radiobutton-label"
+                >Alternativa D</label
+              >
             </div>
+            <p  class="error" style="margin-left:10px;" v-if="validateRequired($v.question.correctAnswer)">
+              {{ msg.requiredaAnswer }}
+            </p>
           </div>
         </div>
+
         <div class="div-flex">
           <Button
-            @click="cleanFields()"
+            @click="save() "
             label="Salvar"
             class="p-button-info p-button-rounded btn-size"
           />
@@ -125,22 +149,27 @@
 </template>
 
 <script>
+import Employee from "../../service/employee";
 import Question from "../../service/Question";
 import { required } from "vuelidate/lib/validators";
 
 export default {
   data() {
     return {
+      employee:undefined,
+      selectedEmployee:undefined,
       question: {
+        name:"",
         body: "",
         answerA: "",
         answerB: "",
         answerC: "",
-        answerD: ""
+        answerD: "",
+        correctAnswer: ""
       },
       msg: {
         required: "*Campo não pode estar vazio",
-        minLength: "*Necessario 3 carateres no minimo"
+        requiredaAnswer: "*Necessario declarar resposta correta"
       }
     };
   },
@@ -160,17 +189,34 @@ export default {
       },
       answerD: {
         required
+      },
+      correctAnswer: {
+        required
       }
     }
   },
+  mounted() {
+    this.listAllEmployee();
+  },
   methods: {
+    listAllEmployee() {
+      Employee.listAll()
+        .then(res => {
+          this.employee = res.data;
+        })
+        .catch(error => console.log(error));
+    },
     validateRequired(field) {
       return !field.required;
     },
     validadeMinLength(field) {
       return !field.minLength && field.required;
     },
+    selectedEmployeeName(){
+      this.question.name = this.selectedEmployee.name;
+    },
     save() {
+      this.selectedEmployeeName();
       if (this.$v.$invalid) {
         this.$toast.add({
           severity: "error",
@@ -206,6 +252,7 @@ export default {
       this.question.answerB = "";
       this.question.answerC = "";
       this.question.answerD = "";
+      this.question.correctAnswer = "";
     }
   }
 };
@@ -215,6 +262,8 @@ export default {
 .form-style {
   margin: 10px 10px 10px;
   padding: 10px 10px 10px;
+}
+.border {
   border: 2px solid black;
   border-radius: 20px;
 }
@@ -224,8 +273,11 @@ export default {
 }
 .div-flex {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
+  display: flex;  
+  justify-content:space-around;
+}
+.flex{
+  width: 80%;
 }
 .form-title {
   width: 100%;

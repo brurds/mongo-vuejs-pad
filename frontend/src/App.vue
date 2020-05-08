@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Nav />
-    <Toast />
     <router-view></router-view>
+    <Toast />
   </div>
 </template>
 
@@ -22,9 +22,8 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   color: #2c3e50;
-  margin-top: 50px;
+  margin-top: 80px;
   margin-bottom: 50px;
 }
 </style>
