@@ -7,7 +7,11 @@
           <div class=" p-lg-6 p-col-12">
             <h3>Nome</h3>
             <span class="p-float-label">
-              <InputText id="name" type="text" v-model.trim="$v.employee.name.$model" />
+              <InputText
+                id="name"
+                type="text"
+                v-model.trim="$v.employee.name.$model"
+              />
               <label for="name">Digite o nome</label>
             </span>
             <p class="error" v-if="validateRequired($v.employee.name)">
@@ -168,7 +172,6 @@ export default {
       }
     },
     cleanFields() {
-      
       this.employee.name = "";
       this.employee.position = "";
       this.employee.register = "";
@@ -192,10 +195,10 @@ export default {
 }
 .div-flex {
   width: 100%;
-  display: flex;  
-  justify-content:space-around;
+  display: flex;
+  justify-content: space-around;
 }
-.flex{
+.flex {
   width: 80%;
 }
 .form-title {

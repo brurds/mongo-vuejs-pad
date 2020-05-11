@@ -4,9 +4,25 @@ const Schema = mongoose.Schema;
 module.exports = mongoose.model(
   "Question",
   new Schema({
-    name: {
-      type: String,
-      required: true,
+    employee: {
+      _id:{
+        type: String
+      },
+      name: {
+        type: String
+      },
+      position:{
+        type: String
+      },
+      functional: {
+        type: String
+      },
+      register:{
+        type: Number
+      },
+      __v:{
+        type: Number
+      }
     },
     body: {
       type: String,

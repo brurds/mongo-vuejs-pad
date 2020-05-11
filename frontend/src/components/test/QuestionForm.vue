@@ -11,10 +11,9 @@
               :options="employee"
               optionLabel="name"
               placeholder="Selecione o colaborador"
-              
             />
           </div>
-          
+
           <div class="p-col-12">
             <h3>Pergunta</h3>
             <Textarea
@@ -84,7 +83,7 @@
               {{ msg.required }}
             </p>
           </div>
-          <div class="p-grid" >
+          <div class="p-grid">
             <h3 class="p-col-12">Selecione alternativa correta</h3>
             <div class="p-col-12 p-md-6 p-lg-3">
               <RadioButton
@@ -130,7 +129,11 @@
                 >Alternativa D</label
               >
             </div>
-            <p  class="error" style="margin-left:10px;" v-if="validateRequired($v.question.correctAnswer)">
+            <p
+              class="error"
+              style="margin-left:10px;"
+              v-if="validateRequired($v.question.correctAnswer)"
+            >
               {{ msg.requiredaAnswer }}
             </p>
           </div>
@@ -138,10 +141,10 @@
 
         <div class="div-flex">
           <Button
-            @click="save() "
+            @click="save()"
             label="Salvar"
             class="p-button-info p-button-rounded btn-size"
-          />
+          />         
         </div>
       </div>
     </div>
@@ -156,10 +159,10 @@ import { required } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
-      employee:undefined,
-      selectedEmployee:undefined,
+      employee: undefined,
+      selectedEmployee: undefined,
       question: {
-        name:"",
+        employee: {},
         body: "",
         answerA: "",
         answerB: "",
@@ -212,11 +215,19 @@ export default {
     validadeMinLength(field) {
       return !field.minLength && field.required;
     },
-    selectedEmployeeName(){
-      this.question.name = this.selectedEmployee.name;
+    selectedEmployeeAdd() {
+      this.question.employee._id = this.selectedEmployee._id;
+      this.question.employee.name = this.selectedEmployee.name;
+      this.question.employee.position = this.selectedEmployee.position;
+      this.question.employee.functional = this.selectedEmployee.functional;
+      this.question.employee.register = this.selectedEmployee.register;
+    },
+     selectedEmployeefull() {
+      this.question.employee = this.selectedEmployee;
+      
     },
     save() {
-      this.selectedEmployeeName();
+      this.selectedEmployeeAdd();
       if (this.$v.$invalid) {
         this.$toast.add({
           severity: "error",
@@ -225,6 +236,7 @@ export default {
           life: 3000
         });
       } else {
+        this.selectedEmployeefull();
         Question.save(this.question)
           .then(res => {
             console.log(res);
@@ -273,10 +285,10 @@ export default {
 }
 .div-flex {
   width: 100%;
-  display: flex;  
-  justify-content:space-around;
+  display: flex;
+  justify-content: space-around;
 }
-.flex{
+.flex {
   width: 80%;
 }
 .form-title {
