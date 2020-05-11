@@ -5,24 +5,24 @@ module.exports = mongoose.model(
   "Question",
   new Schema({
     employee: {
-      _id:{
-        type: String
+      _id: {
+        type: String,
       },
       name: {
-        type: String
+        type: String,
       },
-      position:{
-        type: String
+      position: {
+        type: String,
       },
       functional: {
-        type: String
+        type: String,
       },
-      register:{
-        type: Number
+      register: {
+        type: Number,
       },
-      __v:{
-        type: Number
-      }
+      __v: {
+        type: Number,
+      },
     },
     body: {
       type: String,

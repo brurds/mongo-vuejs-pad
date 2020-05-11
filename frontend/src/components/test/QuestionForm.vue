@@ -13,7 +13,6 @@
               placeholder="Selecione o colaborador"
             />
           </div>
-
           <div class="p-col-12">
             <h3>Pergunta</h3>
             <Textarea
@@ -36,7 +35,10 @@
               />
               <label for="answerA">Digite a resposta A</label>
             </span>
-            <p class="error" v-if="validateRequired($v.question.answerA)">
+            <p
+              class="error"
+              v-if="validateRequired($v.question.answerA)"
+            >
               {{ msg.required }}
             </p>
           </div>
@@ -50,7 +52,10 @@
               />
               <label for="answerB">Digite a resposta B</label>
             </span>
-            <p class="error" v-if="validateRequired($v.question.answerB)">
+            <p
+              class="error"
+              v-if="validateRequired($v.question.answerB)"
+            >
               {{ msg.required }}
             </p>
           </div>
@@ -64,7 +69,10 @@
               />
               <label for="answerC">Digite a resposta C</label>
             </span>
-            <p class="error" v-if="validateRequired($v.question.answerC)">
+            <p
+              class="error"
+              v-if="validateRequired($v.question.answerC)"
+            >
               {{ msg.required }}
             </p>
           </div>
@@ -79,7 +87,10 @@
               />
               <label for="answerD">Digite a resposta D</label>
             </span>
-            <p class="error" v-if="validateRequired($v.question.answerD)">
+            <p
+              class="error"
+              v-if="validateRequired($v.question.answerD)"
+            >
               {{ msg.required }}
             </p>
           </div>
@@ -138,13 +149,12 @@
             </p>
           </div>
         </div>
-
         <div class="div-flex">
           <Button
             @click="save()"
             label="Salvar"
             class="p-button-info p-button-rounded btn-size"
-          />         
+          />
         </div>
       </div>
     </div>
@@ -215,19 +225,11 @@ export default {
     validadeMinLength(field) {
       return !field.minLength && field.required;
     },
-    selectedEmployeeAdd() {
-      this.question.employee._id = this.selectedEmployee._id;
-      this.question.employee.name = this.selectedEmployee.name;
-      this.question.employee.position = this.selectedEmployee.position;
-      this.question.employee.functional = this.selectedEmployee.functional;
-      this.question.employee.register = this.selectedEmployee.register;
-    },
-     selectedEmployeefull() {
+    selectedEmployeeFull() {
       this.question.employee = this.selectedEmployee;
-      
     },
     save() {
-      this.selectedEmployeeAdd();
+      this.selectedEmployeeFull();
       if (this.$v.$invalid) {
         this.$toast.add({
           severity: "error",
@@ -236,7 +238,7 @@ export default {
           life: 3000
         });
       } else {
-        this.selectedEmployeefull();
+        this.selectedEmployeeFull();
         Question.save(this.question)
           .then(res => {
             console.log(res);
