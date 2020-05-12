@@ -36,10 +36,15 @@ export default {
           label: "Questionario",
           icon: "pi pi-fw pi-file",
           items: [
-             {
+            {
               label: "Adicionar questão",
               icon: "pi pi-fw pi-pencil",
               to: "/test/question"
+            },
+            {
+              label: "Editar questão",
+              icon: "pi pi-fw pi-pencil",
+              to: "/test/editQuestion"
             },
             {
               label: "Elaborar questionario",

@@ -28,7 +28,6 @@ import ToastService from "primevue/toastservice";
 import Toast from "primevue/toast";
 import Textarea from "primevue/textarea";
 import RadioButton from 'primevue/radiobutton';
-import PickList from 'primevue/picklist';
 
 Vue.component("Dropdown", Dropdown);
 Vue.component("InputText", InputText);
@@ -48,7 +47,6 @@ Vue.component("Menubar", Menubar);
 Vue.component("Toast", Toast);
 Vue.component("Textarea", Textarea);
 Vue.component("RadioButton", RadioButton);
-Vue.component("PickList", PickList);
 
 Vue.use(Vuelidate);
 Vue.use(ToastService);

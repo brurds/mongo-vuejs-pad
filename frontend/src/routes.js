@@ -3,6 +3,7 @@ import EmployeeAdd from "@/components/page/employee/AddPage.vue";
 import EmployeeList from "@/components/page/employee/EditPage.vue";
 import AddQuestion from "@/components/page/test/AddQuestionPage";
 import TestElaborate from "@/components/page/test/ElaboratePage";
+import EditQuestion from "@/components/page/test/EditPage"
 
 export const routes = [
   {
@@ -24,6 +25,11 @@ export const routes = [
     path: "/test/question",
     name: "AddQuestion",
     component: AddQuestion
+  },
+  {
+    path: "/test/editQuestion",
+    name: "EditQuestion",
+    component: EditQuestion
   },
   {
     path: "/test/elaborate",
