@@ -29,14 +29,26 @@
           >
             <TestForm
               :number="index + 1"
-              :body="selectedQuestion.body"
-              :answerA="selectedQuestion.answerA"
-              :answerB="selectedQuestion.answerB"
-              :answerC="selectedQuestion.answerC"
-              :answerD="selectedQuestion.answerD"
-              :correctAnswer="selectedQuestion.CorrectAnswer"
+              :body="selectedQuestion[index].body"
+              :answerA="selectedQuestion[index].answerA"
+              :answerB="selectedQuestion[index].answerB"
+              :answerC="selectedQuestion[index].answerC"
+              :answerD="selectedQuestion[index].answerD"
             />
-            
+          </div>
+        </div>
+      </div>
+      <div v-if="selectedQuestion[0] != null">
+        <h3 class="form-title">Gabarito</h3>
+        <div class="border">
+          <div
+            v-for="(question, index) in selectedQuestion"
+            :key="selectedQuestion._id"
+          >
+            <ResponseTemplate
+              :number="index + 1"
+              :correctAnswer="selectedQuestion[index].correctAnswer"
+            />
           </div>
         </div>
       </div>
@@ -47,9 +59,12 @@
 <script>
 import Question from "../../service/Question";
 import TestForm from "./Testform";
+import ResponseTemplate from "./ResponseTemplate";
+
 export default {
   components: {
-    TestForm
+    TestForm,
+    ResponseTemplate
   },
   data() {
     return {

@@ -53,10 +53,6 @@ export default {
       type: String,
       required: true
     },
-    correctAnswer: {
-      type: String,
-      required: true
-    }
   }
 };
 </script>
