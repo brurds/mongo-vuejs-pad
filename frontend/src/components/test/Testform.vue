@@ -1,6 +1,5 @@
 <template>
-  <div>
-    
+  <div>    
     <div class="p-grid p-fluid form-style">
       <div class="p-col-12">
         <h3>{{number}}ª Questão</h3>

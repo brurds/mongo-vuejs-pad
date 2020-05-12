@@ -58,7 +58,7 @@
 
 <script>
 import Question from "../../service/Question";
-import TestForm from "./Testform";
+import TestForm from "./TestForm";
 import ResponseTemplate from "./ResponseTemplate";
 
 export default {
