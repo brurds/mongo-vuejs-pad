@@ -3,7 +3,9 @@ const routes = express.Router();
 const EmployeeController= require('./controller/employee');
 const employeeController = new EmployeeController();
 const QuestionController = require('./controller/question');
-const questionControler = new QuestionController();
+const questionController = new QuestionController();
+const TestController = require('./controller/test');
+const testeController = new TestController();
 
 
 routes.route("/employee")
@@ -13,10 +15,19 @@ routes.route("/employee")
 routes.route("/employee/:id")
     .delete(employeeController.delete())
     .put(employeeController.put());
+
 routes.route("/question")
-    .get(questionControler.get())
-    .post(questionControler.post());
+    .get(questionController.get())
+    .post(questionController.post());
 routes.route("/question/:id")
-    .delete(questionControler.delete())
-    .put(questionControler.put());
+    .delete(questionController.delete())
+    .put(questionController.put());
+
+routes.route("/test")
+    .get(testeController.get())
+    .post(testeController.post());
+routes.route("/test/:id")
+    .delete(testeController.delete())
+    .put(testeController.put());
+
 module.exports = routes;

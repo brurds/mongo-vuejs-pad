@@ -6,7 +6,7 @@
         <DataTable
           :value="question"
           :selection.sync="selectedQuestion"
-          dataKey="_id"
+          data-key="_id"
           :paginator="true"
           :rows="10"
         >
@@ -23,10 +23,7 @@
       <div v-if="selectedQuestion[0] != null">
         <h3 class="form-title">Prova</h3>
         <div class="border">
-          <div
-            v-for="(question, index) in selectedQuestion"
-            :key="selectedQuestion._id"
-          >
+          <div v-for="(question, index) in selectedQuestion" :key="selectedQuestion._id">
             <TestForm
               :number="index + 1"
               :body="selectedQuestion[index].body"
@@ -41,16 +38,16 @@
       <div v-if="selectedQuestion[0] != null">
         <h3 class="form-title">Gabarito</h3>
         <div class="border">
-          <div
-            v-for="(question, index) in selectedQuestion"
-            :key="selectedQuestion._id"
-          >
+          <div v-for="(question, index) in selectedQuestion" :key="selectedQuestion._id">
             <ResponseTemplate
               :number="index + 1"
               :correctAnswer="selectedQuestion[index].correctAnswer"
             />
           </div>
         </div>
+      </div>
+      <div v-if="selectedQuestion[0] != null" class="form-title">
+        <Button label="Salvar Prova" icon="pi pi-check" @click="save()" class="p-button-success" />
       </div>
     </div>
   </div>
@@ -60,6 +57,7 @@
 import Question from "../../service/Question";
 import TestForm from "./TestForm";
 import ResponseTemplate from "./ResponseTemplate";
+import Test from "../../service/Test";
 
 export default {
   components: {
@@ -69,7 +67,10 @@ export default {
   data() {
     return {
       question: undefined,
-      selectedQuestion: []
+      selectedQuestion: [],
+      test:{
+        questions:[]
+      }
     };
   },
   mounted() {
@@ -82,6 +83,28 @@ export default {
           this.question = res.data;
         })
         .catch(error => console.log(error));
+    },
+    save() {
+      this.test.questions = this.selectedQuestion;
+        Test.save(this.test)
+          .then(res => {
+            this.$toast.add({
+              severity: "success",
+              summary: "Cadastro",
+              detail: "Cadastro realizado com sucesso",
+              life: 3000
+            });
+          })
+          .catch(error => {
+            console.log(error);
+            this.$toast.add({
+              severity: "error",
+              summary: "Cadastro",
+              detail: "Erro ao cadastrar, verifique os campos",
+              life: 3000
+            });
+          });
+      
     }
   }
 };

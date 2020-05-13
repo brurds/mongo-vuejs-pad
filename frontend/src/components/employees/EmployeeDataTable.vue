@@ -143,7 +143,7 @@
 </template>
 
 <script>
-import Employee from "../../service/employee";
+import Employee from "../../service/Employee";
 
 export default {
   data() {

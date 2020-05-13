@@ -1,18 +1,18 @@
-const EmployessCRUD = require("../database/employeeCRUD");
-const employessCRUD = new EmployessCRUD();
+const EmployeeCRUD = require("../database/employeeCRUD");
+const employeeCRUD = new EmployeeCRUD();
 
 class EmployeeController {
     get() {
-        return employessCRUD.get();
+        return employeeCRUD.get();
     };
     post() {
-        return employessCRUD.post();
+        return employeeCRUD.post();
     };
     delete() {
-        return employessCRUD.delete();
+        return employeeCRUD.delete();
     };
     put() {
-        return employessCRUD.put();
+        return employeeCRUD.put();
     };
 }
 

@@ -162,7 +162,7 @@
 </template>
 
 <script>
-import Employee from "../../service/employee";
+import Employee from "../../service/Employee";
 import Question from "../../service/Question";
 import { required } from "vuelidate/lib/validators";
 

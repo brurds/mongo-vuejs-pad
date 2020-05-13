@@ -4,56 +4,32 @@
       <div>
         <h1 class="form-title">Formulário de colaboradores</h1>
         <div class="p-grid p-fluid form-style border">
-          <div class=" p-lg-6 p-col-12">
+          <div class="p-lg-6 p-col-12">
             <h3>Nome</h3>
             <span class="p-float-label">
-              <InputText
-                id="name"
-                type="text"
-                v-model.trim="$v.employee.name.$model"
-              />
+              <InputText id="name" type="text" v-model.trim="$v.employee.name.$model" />
               <label for="name">Digite o nome</label>
             </span>
-            <p class="error" v-if="validateRequired($v.employee.name)">
-              {{ msg.required }}
-            </p>
-            <p class="error" v-if="validadeMinLength($v.employee.name)">
-              {{ msg.minLength }}
-            </p>
+            <p class="error" v-if="validateRequired($v.employee.name)">{{ msg.required }}</p>
+            <p class="error" v-if="validadeMinLength($v.employee.name)">{{ msg.minLength }}</p>
           </div>
           <div class="p-lg-6 p-col-12">
             <h3>Cargo</h3>
             <span class="p-float-label">
-              <InputText
-                id="position"
-                type="text"
-                v-model.trim="$v.employee.position.$model"
-              />
+              <InputText id="position" type="text" v-model.trim="$v.employee.position.$model" />
               <label for="position">Digite o cargo</label>
             </span>
-            <p class="error" v-if="validateRequired($v.employee.position)">
-              {{ msg.required }}
-            </p>
-            <p class="error" v-if="validadeMinLength($v.employee.position)">
-              {{ msg.minLength }}
-            </p>
+            <p class="error" v-if="validateRequired($v.employee.position)">{{ msg.required }}</p>
+            <p class="error" v-if="validadeMinLength($v.employee.position)">{{ msg.minLength }}</p>
           </div>
           <div class="p-lg-6 p-col-12">
             <h3>Area Funcional</h3>
             <span class="p-float-label">
-              <InputText
-                id="functional"
-                type="text"
-                v-model.trim="$v.employee.functional.$model"
-              />
+              <InputText id="functional" type="text" v-model.trim="$v.employee.functional.$model" />
               <label for="functional">Digite a area</label>
             </span>
-            <p class="error" v-if="validateRequired($v.employee.functional)">
-              {{ msg.required }}
-            </p>
-            <p class="error" v-if="validadeMinLength($v.employee.functional)">
-              {{ msg.minLength }}
-            </p>
+            <p class="error" v-if="validateRequired($v.employee.functional)">{{ msg.required }}</p>
+            <p class="error" v-if="validadeMinLength($v.employee.functional)">{{ msg.minLength }}</p>
           </div>
           <div class="p-lg-6 p-col-12">
             <h3>Registro</h3>
@@ -66,24 +42,14 @@
               />
               <label for="register">Digite o registro</label>
             </span>
-            <p class="error" v-if="validateRequired($v.employee.register)">
-              {{ msg.required }}
-            </p>
-            <p class="error" v-if="validadeMinLength($v.employee.register)">
-              {{ msg.minLength }}
-            </p>
-            <p class="error" v-if="validadeMaxValue($v.employee.register)">
-              {{ msg.maxValue }}
-            </p>
+            <p class="error" v-if="validateRequired($v.employee.register)">{{ msg.required }}</p>
+            <p class="error" v-if="validadeMinLength($v.employee.register)">{{ msg.minLength }}</p>
+            <p class="error" v-if="validadeMaxValue($v.employee.register)">{{ msg.maxValue }}</p>
           </div>
         </div>
 
         <div class="div-flex">
-          <Button
-            @click="save()"
-            label="Salvar"
-            class="p-button-info p-button-rounded btn-size"
-          />
+          <Button @click="save()" label="Salvar" class="p-button-info p-button-rounded btn-size" />
         </div>
       </div>
     </div>
@@ -91,7 +57,7 @@
 </template>
 
 <script>
-import Employee from "../../service/employee";
+import Employee from "../../service/Employee";
 import { required, minLength, maxValue } from "vuelidate/lib/validators";
 
 export default {
