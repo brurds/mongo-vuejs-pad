@@ -5,6 +5,9 @@ class TestController {
     get() {
         return testCRUD.get();
     };
+    getOne() {
+        return testCRUD.getOne();
+    };
     post() {
         return testCRUD.post();
     };

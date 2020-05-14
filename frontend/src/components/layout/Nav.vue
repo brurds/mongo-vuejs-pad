@@ -50,6 +50,11 @@ export default {
               label: "Elaborar questionario",
               icon: "pi pi-fw pi-file",
               to: "/test/elaborate"
+            },
+            {
+              label: "Enviar questionario",
+              icon: "pi pi-fw pi-envelope",
+              to: "/test/send"
             }
           ]
         }

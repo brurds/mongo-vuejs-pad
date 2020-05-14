@@ -1,6 +1,6 @@
 <template>
-  <div class="div-flex">
-    <div class="flex">
+  <div class="container">
+    <div class="form-width">
       <div>
         <h1 class="form-title">Formulário de colaboradores</h1>
         <div class="p-grid p-fluid form-style border">
@@ -47,12 +47,18 @@
             <p class="error" v-if="validadeMaxValue($v.employee.register)">{{ msg.maxValue }}</p>
           </div>
         </div>
-
-        <div class="div-flex">
-          <Button @click="save()" label="Salvar" class="p-button-info p-button-rounded btn-size" />
-        </div>
       </div>
     </div>
+    <div class="div-flex-buttons">
+        <div>
+          <Button
+            @click="cancelar()"
+            label="Cancelar"
+            class="p-button-info p-button-rounded btn-size"
+          />
+          <Button @click="save()" label="Salvar" class="p-button-info p-button-rounded" />
+        </div>
+      </div>
   </div>
 </template>
 
@@ -146,33 +152,48 @@ export default {
   }
 };
 </script>
+
 <style scoped>
-.form-style {
+/*Container */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+/*Form width*/
+.container .form-width {
+  width: 80%;
+}
+
+.container .form-width .form-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.container .form-style {
   margin: 10px 10px 10px;
   padding: 10px 10px 10px;
 }
-.border {
+
+.container .border {
   border: 2px solid black;
   border-radius: 20px;
 }
-.error {
+
+.container .error {
   color: red;
   font-size: 10px;
 }
-.div-flex {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-.flex {
+/*Buttons */
+.container .div-flex-buttons {
   width: 80%;
-}
-.form-title {
-  width: 100%;
   display: flex;
   justify-content: space-around;
 }
-.btn-size {
+
+button {
   margin: 10px 10px 10px;
   width: 100px;
 }

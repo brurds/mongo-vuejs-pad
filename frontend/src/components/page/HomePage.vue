@@ -105,20 +105,7 @@
             <p>Para informações ligue +55 (19) 2104-9700 -- info_padtec@padtec.com</p>
           </template>
         </Card>
-        <Card class="p-col-6">
-          <template slot="header">
-            <img alt="user header" src="../../assets/img/atendimento-ao-cliente.png" />
-          </template>
-
-          <template slot="title">
-            <p>Atendimento ao cliente</p>
-          </template>
-
-          <template slot="content">
-            <p>Telefone - 0800 771 9009 -- sac@padtec.com</p>
-            <p>Para informações ligue +55 (19) 2104-9700 -- info_padtec@padtec.com</p>
-          </template>
-        </Card>
+        
       </div>
     </div>
   </div>

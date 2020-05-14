@@ -9,6 +9,15 @@ class TestCRUD {
         .catch((err) => res.send(err));
     };
   }
+  getOne() {
+    return function (req, res) {
+      let id = req.params.id;
+      testModel
+        .findOne({ _id: id })
+        .then((test) => res.send(test))
+        .catch((err) => res.send(err));
+    };
+  }
   post() {
     return function (req, res) {
       let test = new testModel(req.body);

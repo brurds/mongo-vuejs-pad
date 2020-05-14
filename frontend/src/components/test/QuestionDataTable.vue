@@ -1,5 +1,5 @@
 <template>
-  <div class="div-flex">
+  <div class="container">
     <div class="flex">
       <div>
         <DataTable
@@ -258,10 +258,15 @@ export default {
 </script>
 
 <style scoped>
-.div-flex {
-  width: 100%;
+.container {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   justify-content: space-around;
+}
+.form-style {
+  margin: 10px 10px 10px;
+  padding: 10px 10px 10px;
 }
 .flex {
   width: 80%;
