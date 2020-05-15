@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import EmployeeDataTable from "../../../components/employees/EmployeeDataTable";
+import EmployeeDataTable from "../../components/employees/EmployeeDataTable";
 
 export default {
   components: {

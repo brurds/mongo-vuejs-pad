@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import QuestionForm from "../../test/QuestionForm";
+import QuestionForm from "../../components/test/QuestionForm";
 
 export default {
   components: {

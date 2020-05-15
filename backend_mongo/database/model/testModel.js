@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 module.exports = mongoose.model(
   "Test",
   new Schema({
+    name:{ type: String },
     questions: [{
       employee: {
         _id: { type: String },

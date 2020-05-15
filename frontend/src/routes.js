@@ -1,10 +1,10 @@
-import HomePage from "@/components/page/HomePage.vue";
-import EmployeeAdd from "@/components/page/employee/AddPage.vue";
-import EmployeeList from "@/components/page/employee/EditPage.vue";
-import AddQuestion from "@/components/page/test/AddQuestionPage";
-import TestElaborate from "@/components/page/test/ElaboratePage";
-import EditQuestion from "@/components/page/test/EditPage";
-import TestSend from "@/components/page/test/SendPage";
+import HomePage from "./page/home/HomePage.vue";
+import EmployeeAdd from "./page/employee/AddPage.vue";
+import EmployeeList from "./page/employee/EditPage.vue";
+import AddQuestion from "./page/test/AddQuestionPage";
+import TestElaborate from "./page/test/ElaboratePage";
+import EditQuestion from "./page/test/EditPage";
+import TestSend from "./page/test/SendPage";
 
 export const routes = [
   {

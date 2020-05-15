@@ -1,26 +1,23 @@
 <template>
-  <div class="card card-w-title">
-    <ElaborateTest />
-    
+  <div>
+    <EmployeeForm />
+
     <Message severity="info" :life="10000" :sticky="false">
-      {{ messages}}
+      {{ messages }}
     </Message>
   </div>
 </template>
 
 <script>
-import ElaborateTest from "../../../components/test/QuestionSelect";
-
+import EmployeeForm from "../../components/employees/EmployeeForm";
 
 export default {
   components: {
-    ElaborateTest
-    
+    EmployeeForm
   },
-
   data() {
     return {
-      messages: "Elaboração de Prova"
+      messages: "Cadastro de Colaboradores"
     };
   }
 };

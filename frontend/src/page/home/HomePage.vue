@@ -93,7 +93,7 @@
       <div class="p-grid">
         <Card class="p-col-6">
           <template slot="header">
-            <img alt="user header" src="../../assets/img/atendimento-ao-cliente.png" />
+            <img alt="user header" src="../.././assets/img/atendimento-ao-cliente.png" />
           </template>
 
           <template slot="title">

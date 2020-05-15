@@ -3,6 +3,15 @@
     <div class="form-width">
       <div>
         <h3 class="form-title">Seleção de questões</h3>
+        <div>
+          <p>Selecione o responsável</p>
+          <Dropdown
+            v-model="selectedEmployee"
+            :options="employee"
+            optionLabel="name"
+            placeholder="Selecione o colaborador"
+          />
+        </div>
         <DataTable
           :value="question"
           :selection.sync="selectedQuestion"
@@ -55,6 +64,7 @@ import Question from "../../service/Question";
 import TestForm from "./TestForm";
 import ResponseTemplate from "./ResponseTemplate";
 import Test from "../../service/Test";
+import Employee from "../../service/Employee";
 
 export default {
   components: {
@@ -63,15 +73,19 @@ export default {
   },
   data() {
     return {
+      employee:undefined,
+      selectedEmployee:undefined,
       question: undefined,
       selectedQuestion: [],
       test: {
+        name:'',
         questions: []
       }
     };
   },
   mounted() {
     this.listAllQuestion();
+      this.listAllEmployee();
   },
   methods: {
     listAllQuestion() {
@@ -81,7 +95,15 @@ export default {
         })
         .catch(error => console.log(error));
     },
+    listAllEmployee() {
+      Employee.listAll()
+        .then(res => {
+          this.employee = res.data;
+        })
+        .catch(error => console.log(error));
+    },
     save() {
+      this.test.name = this.selectedEmployee.name;
       this.test.questions = this.selectedQuestion;
       Test.save(this.test)
         .then(res => {
