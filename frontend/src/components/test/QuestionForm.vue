@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="form-width">
+    <form class="form-width">
       <h1 class="form-title">Formulário de questões</h1>
       <div class="p-grid p-fluid form-style border">
         <div>
@@ -14,13 +14,13 @@
         </div>
         <div class="p-col-12">
           <h3>Pergunta</h3>
-          <Textarea v-model.trim="question.body" :autoResize="true" rows="5" cols="30" />
+          <Textarea v-model.trim="question.body" :autoResize="true" rows="5" cols="30"/>
           <p class="error" v-if="validateRequired($v.question.body)">{{ msg.required }}</p>
         </div>
         <div class="p-lg-6 p-col-12">
           <h3>Alternativa A</h3>
           <span class="p-float-label">
-            <InputText id="answerA" type="text" v-model.trim="$v.question.answerA.$model" />
+            <InputText id="answerA" type="text" v-model.trim="$v.question.answerA.$model"/>
             <label for="answerA">Digite a resposta A</label>
           </span>
           <p class="error" v-if="validateRequired($v.question.answerA)">{{ msg.required }}</p>
@@ -28,7 +28,7 @@
         <div class="p-lg-6 p-col-12">
           <h3>Alternativa B</h3>
           <span class="p-float-label">
-            <InputText id="answerB" type="text" v-model.trim="$v.question.answerB.$model" />
+            <InputText id="answerB" type="text" v-model.trim="$v.question.answerB.$model"/>
             <label for="answerB">Digite a resposta B</label>
           </span>
           <p class="error" v-if="validateRequired($v.question.answerB)">{{ msg.required }}</p>
@@ -36,7 +36,7 @@
         <div class="p-lg-6 p-col-12">
           <h3>Alternativa C</h3>
           <span class="p-float-label">
-            <InputText id="answerC" type="text" v-model.trim="$v.question.answerC.$model" />
+            <InputText id="answerC" type="text" v-model.trim="$v.question.answerC.$model"/>
             <label for="answerC">Digite a resposta C</label>
           </span>
           <p class="error" v-if="validateRequired($v.question.answerC)">{{ msg.required }}</p>
@@ -99,7 +99,7 @@
           >{{ msg.requiredaAnswer }}</p>
         </div>
       </div>
-    </div>
+    </form>
     <div class="div-flex-buttons">
       <div>
         <Button
@@ -107,165 +107,167 @@
           label="Cancelar"
           class="p-button-info p-button-rounded btn-size"
         />
-        <Button @click="save()" label="Salvar" class="p-button-info p-button-rounded" />
+        <Button @click="save()" label="Salvar" class="p-button-info p-button-rounded"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Employee from "../../service/Employee";
-import Question from "../../service/Question";
-import { required } from "vuelidate/lib/validators";
+  import Employee from "../../service/Employee";
+  import Question from "../../service/Question";
+  import {required} from "vuelidate/lib/validators";
 
-export default {
-  data() {
-    return {
-      employee: undefined,
-      selectedEmployee: undefined,
+  export default {
+    data() {
+      return {
+        employee: undefined,
+        selectedEmployee: undefined,
+        question: {
+          employee: {},
+          body: "",
+          answerA: "",
+          answerB: "",
+          answerC: "",
+          answerD: "",
+          correctAnswer: ""
+        },
+        msg: {
+          required: "*Campo não pode estar vazio",
+          requiredaAnswer: "*Necessario declarar resposta correta"
+        }
+      };
+    },
+    validations: {
       question: {
-        employee: {},
-        body: "",
-        answerA: "",
-        answerB: "",
-        answerC: "",
-        answerD: "",
-        correctAnswer: ""
-      },
-      msg: {
-        required: "*Campo não pode estar vazio",
-        requiredaAnswer: "*Necessario declarar resposta correta"
+        body: {
+          required
+        },
+        answerA: {
+          required
+        },
+        answerB: {
+          required
+        },
+        answerC: {
+          required
+        },
+        answerD: {
+          required
+        },
+        correctAnswer: {
+          required
+        }
       }
-    };
-  },
-  validations: {
-    question: {
-      body: {
-        required
-      },
-      answerA: {
-        required
-      },
-      answerB: {
-        required
-      },
-      answerC: {
-        required
-      },
-      answerD: {
-        required
-      },
-      correctAnswer: {
-        required
-      }
-    }
-  },
-  mounted() {
-    this.listAllEmployee();
-  },
-  methods: {
-    listAllEmployee() {
-      Employee.listAll()
-        .then(res => {
-          this.employee = res.data;
-        })
-        .catch(error => console.log(error));
     },
-    validateRequired(field) {
-      return !field.required;
+    mounted() {
+      this.listAllEmployee();
     },
-    validadeMinLength(field) {
-      return !field.minLength && field.required;
-    },
-    selectedEmployeeFull() {
-      this.question.employee = this.selectedEmployee;
-    },
-    save() {
-      this.selectedEmployeeFull();
-      if (this.$v.$invalid) {
-        this.$toast.add({
-          severity: "error",
-          summary: "Cadastro",
-          detail: "Erro ao cadastrar, verifique os campos",
-          life: 3000
-        });
-      } else {
-        this.selectedEmployeeFull();
-        Question.save(this.question)
+    methods: {
+      listAllEmployee() {
+        Employee.listAll()
           .then(res => {
-            console.log(res);
-            this.$toast.add({
-              severity: "success",
-              summary: "Cadastro",
-              detail: "Cadastro realizado com sucesso",
-              life: 3000
-            });
-            this.cleanFields();
+            this.employee = res.data;
           })
-          .catch(() => {
-            this.$toast.add({
-              severity: "error",
-              summary: "Cadastro",
-              detail: "Erro ao cadastrar, verifique os campos",
-              life: 3000
-            });
+          .catch(error => console.log(error));
+      },
+      validateRequired(field) {
+        return !field.required;
+      },
+      validadeMinLength(field) {
+        return !field.minLength && field.required;
+      },
+      selectedEmployeeFull() {
+        this.question.employee = this.selectedEmployee;
+      },
+      save() {
+        this.selectedEmployeeFull();
+        if (this.$v.$invalid) {
+          this.$toast.add({
+            severity: "error",
+            summary: "Cadastro",
+            detail: "Erro ao cadastrar, verifique os campos",
+            life: 3000
           });
+        } else {
+          this.selectedEmployeeFull();
+          Question.save(this.question)
+            .then(res => {
+              console.log(res);
+              this.$toast.add({
+                severity: "success",
+                summary: "Cadastro",
+                detail: "Cadastro realizado com sucesso",
+                life: 3000
+              });
+              this.cleanFields();
+            })
+            .catch(() => {
+              this.$toast.add({
+                severity: "error",
+                summary: "Cadastro",
+                detail: "Erro ao cadastrar, verifique os campos",
+                life: 3000
+              });
+            });
+        }
+      },
+      cleanFields() {
+        this.question.body = "";
+        this.question.answerA = "";
+        this.question.answerB = "";
+        this.question.answerC = "";
+        this.question.answerD = "";
+        this.question.correctAnswer = "";
       }
-    },
-    cleanFields() {
-      this.question.body = "";
-      this.question.answerA = "";
-      this.question.answerB = "";
-      this.question.answerC = "";
-      this.question.answerD = "";
-      this.question.correctAnswer = "";
     }
-  }
-};
+  };
 </script>
 
 <style scoped>
-/*Container */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-around;
-}
-/*Form width*/
-.container .form-width {
-  width: 80%;
-}
+  /*Container */
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+  }
 
-.container .form-width .form-title {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
+  /*Form width*/
+  .container .form-width {
+    width: 80%;
+  }
 
-.container .form-style {
-  margin: 10px 10px 10px;
-  padding: 10px 10px 10px;
-}
+  .container .form-width .form-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
 
-.container .border {
-  border: 2px solid black;
-  border-radius: 20px;
-}
+  .container .form-style {
+    margin: 10px 10px 10px;
+    padding: 10px 10px 10px;
+  }
 
-.container .error {
-  color: red;
-  font-size: 10px;
-}
-/*Buttons */
-.container .div-flex-buttons {
-  width: 80%;
-  display: flex;
-  justify-content: space-around;
-}
+  .container .border {
+    border: 2px solid black;
+    border-radius: 20px;
+  }
 
-button {
-  margin: 10px 10px 10px;
-  width: 100px;
-}
+  .container .error {
+    color: red;
+    font-size: 10px;
+  }
+
+  /*Buttons */
+  .container .div-flex-buttons {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  button {
+    margin: 10px 10px 10px;
+    width: 100px;
+  }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="p-grid p-fluid form-style">
+    <form class="p-grid p-fluid form-style">
       <div class="p-col-12">
         <h3>{{number}}ª Questão</h3>
         <p>{{body}}</p>
@@ -21,7 +21,7 @@
         <RadioButton id="answerD" name="answerD" value />
         <label for="answerD" class="p-radiobutton-label">{{answerD}}</label>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 

@@ -37,10 +37,10 @@
             </div>
             <div class="p-grid p-fluid" v-if="test">
               <div class="p-col-4">
-                <label for="_id">Id</label>
+                <label for="name">Nome</label>
               </div>
               <div class="p-col-8">
-                <InputText id="_id" v-model="selectedTest._id" :disabled="true" autocomplete="off" />
+                <InputText id="name" v-model="selectedTest.name" :disabled="true" autocomplete="off" />
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@
         </Dialog>
       </div>
     </div>
-    
+
   </div>
 </template>
 
