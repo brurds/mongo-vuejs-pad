@@ -13,17 +13,25 @@
         >
           <template #header>
             <div style="line-height:1.87em" class="p-clearfix">
-              <Button @click="listAllTest()" icon="pi pi-refresh" style="float: left" />Lista de Colaboradores
+              <Button
+                @click="listAllTest()"
+                icon="pi pi-refresh"
+                style="float: left"
+              />Lista Provas
             </div>
           </template>
           <Column field="_id" header="Id" :sortable="true"></Column>
-          <Column field="name" header="Prova criada por" :sortable="true"></Column>
+          <Column
+            field="name"
+            header="Prova criada por"
+            :sortable="true"
+          ></Column>
         </DataTable>
         <!--row alter in table-->
         <Dialog
           :visible.sync="dialogVisible"
           :style="{ width: '400px' }"
-          header="Colaborador"
+          header="Provas"
           :modal="true"
         >
           <div class="p-cardialog-content">
@@ -32,7 +40,12 @@
                 <label for="_id">Id</label>
               </div>
               <div class="p-col-8">
-                <InputText id="_id" v-model="selectedTest._id" :disabled="true" autocomplete="off" />
+                <InputText
+                  id="_id"
+                  v-model="selectedTest._id"
+                  :disabled="true"
+                  autocomplete="off"
+                />
               </div>
             </div>
             <div class="p-grid p-fluid" v-if="test">
@@ -40,7 +53,12 @@
                 <label for="name">Nome</label>
               </div>
               <div class="p-col-8">
-                <InputText id="name" v-model="selectedTest.name" :disabled="true" autocomplete="off" />
+                <InputText
+                  id="name"
+                  v-model="selectedTest.name"
+                  :disabled="true"
+                  autocomplete="off"
+                />
               </div>
             </div>
           </div>
@@ -48,7 +66,7 @@
             <Button
               label="Apagar"
               icon="pi pi-times"
-              @click="confirmation"
+              @click="confirmationButton"
               class="p-button-danger"
             />
             <Button
@@ -57,10 +75,38 @@
               @click="dialogVisible = false"
               class="p-button-info"
             />
-            <Button label="Alterar" icon="pi pi-check" @click="update" class="p-button-success" />
+            <Button
+              label="Enviar Email"
+              icon="pi pi-check"
+              @click="sendEmailButton()"
+              class="p-button-success"
+            />
           </template>
         </Dialog>
-        <!--confirme popup-->
+        <!--confirme send email popup-->
+        <Dialog
+          :visible.sync="dialogSendVisible"
+          :style="{ width: '400px' }"
+          header="Enviar e-mail"
+          :modal="true"
+        >
+          <div class="p-cardialog-content">Deseja realmente deletar?</div>
+          <template #footer>
+            <Button
+              label="Cancelar"
+              icon="pi pi-times "
+              @click="cancelSendEmail"
+              class="p-button-danger"
+            />
+            <Button
+              label="Enviar"
+              icon="pi pi-check"
+              @click="confirmSendEmail"
+              class="p-button-success"
+            />
+          </template>
+        </Dialog>
+        <!--confirme delete popup-->
         <Dialog
           :visible.sync="dialogDeleteVisible"
           :style="{ width: '400px' }"
@@ -83,14 +129,15 @@
             />
           </template>
         </Dialog>
+        {{ selectedTest }}
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
 import Test from "../../service/Test";
+import SendEmail from "../../service/SendEmail";
 
 export default {
   data() {
@@ -99,14 +146,26 @@ export default {
       test: undefined,
       selectedTest: undefined,
       dialogVisible: false,
-      dialogDeleteVisible: false
+      dialogDeleteVisible: false,
+      dialogSendVisible: false,
+
+      email: {
+        service_id: "default_service",
+        template_id: "template_Uu1Fpy1q",
+        user_id: "user_F4qsKa5NnZRQy9IdArfUR",
+        template_params: {
+          from_name: "Bruno",
+          link_test: "http://google.com",
+          to_email: "bru_rds@yahoo.com.br"
+        }
+      }
     };
   },
   mounted() {
     this.listAllTest();
   },
   methods: {
-    confirmation() {
+    confirmationButton() {
       this.dialogVisible = false;
       this.dialogDeleteVisible = true;
     },
@@ -120,6 +179,12 @@ export default {
     cancelDelete() {
       this.dialogDeleteVisible = false;
       this.dialogVisible = true;
+      this.$toast.add({
+        severity: "warn",
+        summary: "Apagar",
+        detail: "Operação cancelada",
+        life: 3000
+      });
     },
 
     listAllTest() {
@@ -151,26 +216,49 @@ export default {
       this.selectedTest = undefined;
     },
 
-    update() {
-      Test.update(this.selectedTest)
-        .then(res => {
-          console.log(res);
-          this.$toast.add({
-            severity: "success",
-            summary: "Alterar",
-            detail: "Questão alterada com sucesso",
-            life: 3000
-          });
-        })
-        .catch(err => console.log(err));
-      this.dialogVisible = false;
-      this.test = undefined;
-      this.selectedTest = undefined;
-    },
-
     onRowSelect(event) {
       this.test = { ...event.data };
       this.dialogVisible = true;
+    },
+    sendEmailButton() {
+      this.dialogVisible = false;
+      this.dialogSendVisible = true;
+    },
+    confirmSendEmail() {
+      this.dialogSendVisible = false;
+      this.dialogVisible = true;
+      this.sendEmail();
+    },
+    cancelSendEmail() {
+      this.dialogSendVisible = false;
+      this.dialogVisible = true;
+      this.$toast.add({
+        severity: "warn",
+        summary: "Enviar",
+        detail: "Operação cancelada",
+        life: 3000
+      });
+    },
+    sendEmail() {
+      SendEmail.send(this.email)
+        .then(() => {
+          console.log("SUCCESS!");
+          this.$toast.add({
+            severity: "success",
+            summary: "Enviar",
+            detail: "Prova Enviada",
+            life: 3000
+          });
+        },
+        error => {
+          this.$toast.add({
+            severity: "error",
+            summary: "Enviar",
+            detail: "Falha ai enviar prova "+ error,
+            life: 3000
+          });
+        }
+      );
     }
   }
 };
