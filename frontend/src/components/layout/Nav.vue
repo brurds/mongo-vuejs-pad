@@ -7,7 +7,8 @@
 <script>
 export default {
   name: "Nav",
-
+  
+  
   data() {
     return {
       items: [
@@ -37,12 +38,12 @@ export default {
           icon: "pi pi-fw pi-file",
           items: [
             {
-              label: "Adicionar questão",
+              label: "Adicionar questões",
               icon: "pi pi-fw pi-pencil",
               to: "/test/question"
             },
             {
-              label: "Editar questão",
+              label: "Editar questões",
               icon: "pi pi-fw pi-pencil",
               to: "/test/editQuestion"
             },
@@ -52,7 +53,7 @@ export default {
               to: "/test/elaborate"
             },
             {
-              label: "Enviar questionario",
+              label: "Enviar/deletar questionario",
               icon: "pi pi-fw pi-envelope",
               to: "/test/send"
             }

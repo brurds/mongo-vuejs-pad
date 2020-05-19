@@ -90,7 +90,47 @@
           header="Enviar e-mail"
           :modal="true"
         >
-          <div class="p-cardialog-content">Deseja realmente deletar?</div>
+          <div class="p-cardialog-content">Deseja realmente Enviar?</div>
+          <p></p>
+          <div class="p-grid p-fluid" v-if="test">
+            <div class="p-col-4">
+              <label for="email">E-mail</label>
+            </div>
+            <div class="p-col-8">
+              <InputText
+                id="email"
+                v-model="email.template_params.to_email"
+                :disabled="false"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <div class="p-grid p-fluid" v-if="test">
+            <div class="p-col-4">
+              <label for="from">Remetente:</label>
+            </div>
+            <div class="p-col-8">
+              <InputText
+                id="from"
+                v-model="email.template_params.from_name"
+                :disabled="false"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <div class="p-grid p-fluid" v-if="test">
+            <div class="p-col-4">
+              <label for="to">Destinatario:</label>
+            </div>
+            <div class="p-col-8">
+              <InputText
+                id="to"
+                v-model="email.template_params.user"
+                :disabled="false"
+                autocomplete="off"
+              />
+            </div>
+          </div>
           <template #footer>
             <Button
               label="Cancelar"
@@ -129,7 +169,6 @@
             />
           </template>
         </Dialog>
-        {{ selectedTest }}
       </div>
     </div>
   </div>
@@ -154,9 +193,10 @@ export default {
         template_id: "template_Uu1Fpy1q",
         user_id: "user_F4qsKa5NnZRQy9IdArfUR",
         template_params: {
-          from_name: "Bruno",
-          link_test: "http://google.com",
-          to_email: "bru_rds@yahoo.com.br"
+          from_name: "",
+          link_test: "",
+          to_email: "",
+          user: ""
         }
       }
     };
@@ -240,8 +280,9 @@ export default {
       });
     },
     sendEmail() {
-      SendEmail.send(this.email)
-        .then(() => {
+      this.email.template_params.link_test = this.selectedTest._id;
+      SendEmail.send(this.email).then(
+        () => {
           console.log("SUCCESS!");
           this.$toast.add({
             severity: "success",
@@ -254,7 +295,7 @@ export default {
           this.$toast.add({
             severity: "error",
             summary: "Enviar",
-            detail: "Falha ai enviar prova "+ error,
+            detail: "Falha ai enviar prova " + error,
             life: 3000
           });
         }

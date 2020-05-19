@@ -27,7 +27,7 @@ routes.route("/test")
     .get(testeController.get())
     .post(testeController.post());
 routes.route("/test/:id")
-    .get(testeController.getOne())
+    .get(testeController.getOne()) 
     .delete(testeController.delete())
     .put(testeController.put());
 

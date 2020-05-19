@@ -1,17 +1,16 @@
 <template>
   <div>
-    <TestDataTable/>
+       <TestDataTable/>
   </div>
 </template>
 
-<script>
-  import TestDataTable from "./TestDataTable";
+<script> 
+import TestDataTable from "../../components/test/TestDataTable";
 
   export default {
     components: {
       TestDataTable
     }
-
   }
 </script>
 

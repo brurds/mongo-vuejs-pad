@@ -17,7 +17,7 @@
                 @click="listAllQuestion()"
                 icon="pi pi-refresh"
                 style="float: left"
-              />Lista de Colaboradores
+              />Lista de Questões
             </div>
           </template>
           <Column field="_id" header="Id" :sortable="true"></Column>
@@ -32,7 +32,7 @@
         <Dialog
           :visible.sync="dialogVisible"
           :style="{ width: '400px' }"
-          header="Colaborador"
+          header="Questões"
           :modal="true"
         >
           <div class="p-cardialog-content">

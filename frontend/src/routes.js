@@ -3,8 +3,9 @@ import EmployeeAdd from "./page/employee/AddPage.vue";
 import EmployeeList from "./page/employee/EditPage.vue";
 import AddQuestion from "./page/test/AddQuestionPage";
 import TestElaborate from "./page/test/ElaboratePage";
-import EditQuestion from "./page/test/EditPage";
-import TestSend from "./page/test/SendPage";
+import EditQuestion from "./page/test/EditQuestionPage";
+import TestEdit from "./page/test/EditTestPage";
+import TestView from "./page/test/ViewTestPage";
 
 export const routes = [
   {
@@ -39,7 +40,12 @@ export const routes = [
   },
   {
     path: "/test/send",
-    name: "TestSend",
-    component: TestSend
+    name: "TestEdit",
+    component: TestEdit
+  },
+  {
+    path: "/test/:id",
+    name: "TestView",
+    component: TestView
   }
 ];
