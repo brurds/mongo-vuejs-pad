@@ -1,10 +1,6 @@
 <template>
   <div>
     <QuestionForm />
-
-    <Message severity="info" :life="10000" :sticky="false">
-      {{messages}}
-    </Message>
   </div>
 </template>
 
@@ -15,11 +11,6 @@ export default {
   components: {
     QuestionForm
   },
-  data() {
-    return {
-      messages: "Cadastro de questões"
-    };
-  }
 };
 </script>
 

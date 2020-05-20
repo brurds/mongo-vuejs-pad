@@ -6,7 +6,7 @@
         <EmployeeDataTable />
       </div>
       <div>
-        <Message severity="info" :life="10000" :sticky="false">{{messages}}</Message>
+        <Message severity="info" >{{messages}}</Message>
       </div>
     </div>
   </div>

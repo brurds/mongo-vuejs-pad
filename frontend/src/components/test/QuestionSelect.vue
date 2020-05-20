@@ -12,6 +12,7 @@
             placeholder="Selecione o colaborador"
           />
         </div>
+        <p v-if="valid" class="error">Necessario selecionar um responsavel</p>
         <DataTable
           :value="question"
           :selection.sync="selectedQuestion"
@@ -53,7 +54,8 @@
     </div>
      <div v-if="selectedQuestion[0] != null" class="div-flex-buttons">
         <div>
-        <Button label="Salvar Prova" icon="pi pi-check" @click="save()" class="p-button-success" />
+        <Button :disabled="valid" label="Salvar Prova" icon="pi pi-check" @click="save()" class="p-button-success" />
+        
       </div>
      </div>
   </div>
@@ -73,6 +75,7 @@ export default {
   },
   data() {
     return {
+      valid:true,
       employee:undefined,
       selectedEmployee:undefined,
       question: undefined,
@@ -87,7 +90,12 @@ export default {
     this.listAllQuestion();
       this.listAllEmployee();
   },
-  methods: {
+  watch: {
+    selectedEmployee(newValue){
+      this.valid = false;
+    }
+  },
+  methods: {  
     listAllQuestion() {
       Question.listAll()
         .then(res => {
@@ -159,5 +167,9 @@ export default {
   width: 80%;
   display: flex;
   justify-content: space-around;
+}
+.error {
+  color: red;
+  font-size: 10px;
 }
 </style>

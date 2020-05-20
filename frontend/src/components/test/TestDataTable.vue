@@ -266,7 +266,7 @@ export default {
     },
     confirmSendEmail() {
       this.dialogSendVisible = false;
-      this.dialogVisible = true;
+      this.dialogVisible = false;
       this.sendEmail();
     },
     cancelSendEmail() {
@@ -295,7 +295,7 @@ export default {
           this.$toast.add({
             severity: "error",
             summary: "Enviar",
-            detail: "Falha ai enviar prova " + error,
+            detail: "Falha ao enviar prova " + error,
             life: 3000
           });
         }

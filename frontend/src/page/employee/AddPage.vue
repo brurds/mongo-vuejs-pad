@@ -1,10 +1,9 @@
 <template>
   <div>
-    <EmployeeForm />
-
-    <Message severity="info" :life="10000" :sticky="false">
-      {{ messages }}
-    </Message>
+    <div>
+      <EmployeeForm />
+    </div>
+   
   </div>
 </template>
 
@@ -17,7 +16,6 @@ export default {
   },
   data() {
     return {
-      messages: "Cadastro de Colaboradores"
     };
   }
 };

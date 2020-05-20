@@ -1,10 +1,6 @@
 <template>
   <div class="card card-w-title">
     <ElaborateTest />
-    
-    <Message severity="info" :life="10000" :sticky="false">
-      {{ messages}}
-    </Message>
   </div>
 </template>
 
@@ -17,12 +13,6 @@ export default {
     ElaborateTest
     
   },
-
-  data() {
-    return {
-      messages: "Elaboração de Prova"
-    };
-  }
 };
 </script>
 
