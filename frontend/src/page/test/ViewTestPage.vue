@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="form-width">
+      <h3>Olá {{employee.name}}</h3>
       <div class="div-test">
         <div v-for="(question, index) in test" :key="test._id">
             <TestForm
@@ -12,7 +13,9 @@
             :answerD="test[index].answerD"
             />
         </div>
+        
       </div>
+      {{employee}}
     </div>
   </div>
 </template>
@@ -20,28 +23,41 @@
 <script>
 import Test from "../../service/Test";
 import TestForm from "../../components/test/TestForm";
+import Employee from "../../service/Employee";
 
 export default {
   components: {
     TestForm
   },
+
   data() {
     return {
-        id:'',
-        test: []
+        idTest:'',
+        idEmployee:'',
+        test: [],
+        employee:undefined
     };
   },
+
   mounted() {
-    this.id = this.$route.path.substring(6, 30);
-    console.log(this.id)
+    this.idTest = this.$route.path.substring(6, 30);
+    this.idEmployee = this.$route.path.substring(31, 55);
     this.findOneTest();
-    
+    this.findOneEmployee();  
   },
+
   methods: {
     findOneTest() {
-      Test.findOne(this.id)
+      Test.findOne(this.idTest)
         .then(res => {
           this.test = res.data.questions;
+        })
+        .catch(error => console.log(error));
+    },
+    findOneEmployee() {
+      Employee.findOne(this.idEmployee)
+        .then(res => {
+          this.employee = res.data;
         })
         .catch(error => console.log(error));
     }

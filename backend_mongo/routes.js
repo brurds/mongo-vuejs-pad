@@ -13,6 +13,7 @@ routes.route("/employee")
     .post(employeeController.post());
 
 routes.route("/employee/:id")
+    .get(employeeController.getOne()) 
     .delete(employeeController.delete())
     .put(employeeController.put());
 

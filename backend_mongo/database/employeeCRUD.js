@@ -9,6 +9,15 @@ class EmployeeCRUD {
         .catch((err) => res.send(err));
     };
   }
+  getOne() {
+    return function (req, res) {
+      let id = req.params.id;
+      employeeModel
+        .findById({ _id: id })
+        .then((listAll) => res.send(listAll))
+        .catch((err) => res.send(err));
+    };
+  }
   post() {
     return function (req, res) {
       let employee = new employeeModel(req.body);

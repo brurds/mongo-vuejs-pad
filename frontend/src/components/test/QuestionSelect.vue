@@ -12,7 +12,7 @@
             placeholder="Selecione o colaborador"
           />
         </div>
-        <p v-if="valid" class="error">Necessario selecionar um responsavel</p>
+        <p v-if="valid" class="error">Necessário selecionar um responsável</p>
         <DataTable
           :value="question"
           :selection.sync="selectedQuestion"
@@ -88,7 +88,7 @@ export default {
   },
   mounted() {
     this.listAllQuestion();
-      this.listAllEmployee();
+    this.listAllEmployee();
   },
   watch: {
     selectedEmployee(newValue){

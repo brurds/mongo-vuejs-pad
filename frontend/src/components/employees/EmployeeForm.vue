@@ -76,6 +76,23 @@
               {{ msg.maxValue }}
             </p>
           </div>
+            <div class="p-lg-6 p-col-12">
+            <h3>E-mail</h3>
+            <span class="p-float-label">
+              <InputText
+                id="email"
+                type="email"
+                v-model.trim="$v.employee.email.$model"
+              />
+              <label for="email">Digite o email</label>
+            </span>
+            <p class="error" v-if="validateRequired($v.employee.email)">
+              {{ msg.required }}
+            </p>
+            <p class="error" v-if="validadeEmail($v.employee.email)">
+              {{ msg.email}}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -100,7 +117,7 @@
 
 <script>
 import Employee from "../../service/Employee";
-import { required, minLength, maxValue } from "vuelidate/lib/validators";
+import { required, minLength, maxValue, email } from "vuelidate/lib/validators";
 
 export default {
   data() {
@@ -109,12 +126,14 @@ export default {
         name: "",
         position: "",
         functional: "",
-        register: ""
+        register: "",
+        email:""
       },
       msg: {
         required: "*Campo não pode estar vazio",
         minLength: "*Necessario 3 carateres no minimo",
-        maxValue: "*Maximo de 9 caracteres"
+        maxValue: "*Maximo de 9 caracteres", 
+        email: "Digite um email valido "
       }
     };
   },
@@ -136,6 +155,11 @@ export default {
         required,
         minLength: minLength(3),
         maxValue: maxValue(999999999)
+      },
+      email:{
+        required,
+        minLength: minLength(3),
+        email
       }
     }
   },
@@ -148,6 +172,9 @@ export default {
     },
     validadeMaxValue(field) {
       return !field.maxValue;
+    },
+   validadeEmail(field) {
+      return !field.email;
     },
     save() {
       if (this.$v.$invalid) {

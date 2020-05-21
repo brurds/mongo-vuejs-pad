@@ -20,5 +20,9 @@ module.exports = mongoose.model(
       type: Number,
       required: true,
     },
+    email: {
+      type: String,
+      required: true,
+    },
   })
 );

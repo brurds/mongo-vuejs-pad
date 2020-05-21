@@ -44,7 +44,7 @@ export const routes = [
     component: TestEdit
   },
   {
-    path: "/test/:id",
+    path: "/test/:idtest/:idEmployee",
     name: "TestView",
     component: TestView
   }

@@ -89,7 +89,7 @@
             <RadioButton
               id="answerA"
               name="answer"
-              value="answerA"
+              value="a"
               v-model.trim="$v.question.correctAnswer.$model"
             />
             <label for="answerA" class="p-radiobutton-label"
@@ -100,7 +100,7 @@
             <RadioButton
               id="answerB"
               name="answer"
-              value="answerB"
+              value="b"
               v-model.trim="$v.question.correctAnswer.$model"
             />
             <label for="answerB" class="p-radiobutton-label"
@@ -111,7 +111,7 @@
             <RadioButton
               id="answerC"
               name="answer"
-              value="answerC"
+              value="c"
               v-model.trim="$v.question.correctAnswer.$model"
             />
             <label for="answerC" class="p-radiobutton-label"
@@ -122,7 +122,7 @@
             <RadioButton
               id="answerD"
               name="answer"
-              value="answerD"
+              value="d"
               v-model.trim="$v.question.correctAnswer.$model"
             />
             <label for="answerD" class="p-radiobutton-label"

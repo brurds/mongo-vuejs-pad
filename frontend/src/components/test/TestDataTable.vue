@@ -50,7 +50,7 @@
             </div>
             <div class="p-grid p-fluid" v-if="test">
               <div class="p-col-4">
-                <label for="name">Nome</label>
+                <label for="name">Criado por </label>
               </div>
               <div class="p-col-8">
                 <InputText
@@ -92,26 +92,13 @@
         >
           <div class="p-cardialog-content">Deseja realmente Enviar?</div>
           <p></p>
-          <div class="p-grid p-fluid" v-if="test">
+           <div class="p-grid p-fluid" v-if="test">
             <div class="p-col-4">
-              <label for="email">E-mail</label>
+              <label for="msg">Remetente:</label>
             </div>
             <div class="p-col-8">
               <InputText
-                id="email"
-                v-model="email.template_params.to_email"
-                :disabled="false"
-                autocomplete="off"
-              />
-            </div>
-          </div>
-          <div class="p-grid p-fluid" v-if="test">
-            <div class="p-col-4">
-              <label for="from">Remetente:</label>
-            </div>
-            <div class="p-col-8">
-              <InputText
-                id="from"
+                id="msg"
                 v-model="email.template_params.from_name"
                 :disabled="false"
                 autocomplete="off"
@@ -120,17 +107,31 @@
           </div>
           <div class="p-grid p-fluid" v-if="test">
             <div class="p-col-4">
-              <label for="to">Destinatario:</label>
+              <label for="email">Colaborador</label>
             </div>
             <div class="p-col-8">
-              <InputText
-                id="to"
-                v-model="email.template_params.user"
+              <Dropdown
+                v-model="selectedEmployee"
+                :options="employee"
+                optionLabel="name"
+                placeholder="Selecione o colaborador"
+              />
+            </div>
+          </div>
+          <div class="p-grid p-fluid" v-if="test">
+            <div class="p-col-4">
+              <label for="msg">Mensagem</label>
+            </div>
+            <div class="p-col-8">
+              <Textarea
+                id="msg"
+                v-model="email.template_params.msg"
                 :disabled="false"
                 autocomplete="off"
               />
             </div>
           </div>
+         
           <template #footer>
             <Button
               label="Cancelar"
@@ -177,6 +178,7 @@
 <script>
 import Test from "../../service/Test";
 import SendEmail from "../../service/SendEmail";
+import Employee from "../../service/Employee";
 
 export default {
   data() {
@@ -187,6 +189,8 @@ export default {
       dialogVisible: false,
       dialogDeleteVisible: false,
       dialogSendVisible: false,
+      employee:undefined,
+      selectedEmployee:undefined,
 
       email: {
         service_id: "default_service",
@@ -195,27 +199,28 @@ export default {
         template_params: {
           from_name: "",
           link_test: "",
+          link_user:"",
           to_email: "",
-          user: ""
+          user: "",
+          msg:""
         }
       }
     };
   },
   mounted() {
     this.listAllTest();
+    this.listAllEmployee();
   },
   methods: {
     confirmationButton() {
       this.dialogVisible = false;
       this.dialogDeleteVisible = true;
     },
-
     confirmDelete() {
       this.deleted();
       this.dialogVisible = false;
       this.dialogDeleteVisible = false;
     },
-
     cancelDelete() {
       this.dialogDeleteVisible = false;
       this.dialogVisible = true;
@@ -226,7 +231,6 @@ export default {
         life: 3000
       });
     },
-
     listAllTest() {
       Test.listAll()
         .then(res => {
@@ -234,7 +238,13 @@ export default {
         })
         .catch(error => console.log(error));
     },
-
+    listAllEmployee() {
+      Employee.listAll()
+        .then(res => {
+          this.employee = res.data;
+        })
+        .catch(error => console.log(error));
+    },
     deleted() {
       Test.delete(this.selectedTest)
         .then(res => {
@@ -255,7 +265,6 @@ export default {
       this.test = undefined;
       this.selectedTest = undefined;
     },
-
     onRowSelect(event) {
       this.test = { ...event.data };
       this.dialogVisible = true;
@@ -281,6 +290,10 @@ export default {
     },
     sendEmail() {
       this.email.template_params.link_test = this.selectedTest._id;
+      this.email.template_params.to_email = this.selectedEmployee.email;
+      this.email.template_params.user = this.selectedEmployee.name;
+      this.email.template_params.link_user = this.selectedEmployee._id;
+
       SendEmail.send(this.email).then(
         () => {
           console.log("SUCCESS!");

@@ -7,7 +7,7 @@
       <div class="p-col-12">
         <RadioButton id="correctAnswer" name="correctAnswer" value="" />
         <label for="correctAnswer" class="p-radiobutton-label"
-          >Alternativa {{ correctAnswer.substring(6, 7) }}</label>
+          >Alternativa {{ correctAnswer }}</label>
       </div>
     </div>
   </div>

@@ -5,6 +5,9 @@ class EmployeeController {
     get() {
         return employeeCRUD.get();
     };
+    getOne() {
+        return employeeCRUD.getOne();
+    };
     post() {
         return employeeCRUD.post();
     };

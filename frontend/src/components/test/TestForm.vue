@@ -7,19 +7,19 @@
       </div>
       <div class="p-col-12">
         <RadioButton />
-        <label class="p-radiobutton-label">{{ answerA }}</label>
+        <label class="p-radiobutton-label">A) {{ answerA }}</label>
       </div>
       <div class="p-col-12">
         <RadioButton />
-        <label class="p-radiobutton-label">{{ answerB }}</label>
+        <label class="p-radiobutton-label">B) {{ answerB }}</label>
       </div>
       <div class="p-col-12">
         <RadioButton />
-        <label class="p-radiobutton-label">{{ answerC }}</label>
+        <label class="p-radiobutton-label">C) {{ answerC }}</label>
       </div>
       <div class="p-col-12">
         <RadioButton />
-        <label class="p-radiobutton-label">{{ answerD }}</label>
+        <label class="p-radiobutton-label">D) {{ answerD }}</label>
       </div>
     </form>
   </div>

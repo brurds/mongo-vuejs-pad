@@ -20,14 +20,8 @@
               />Lista de Colaboradores
             </div>
           </template>
-          <Column field="_id" header="Id" :sortable="true"></Column>
           <Column field="name" header="nome" :sortable="true"></Column>
           <Column field="position" header="cargo" :sortable="true"></Column>
-          <Column
-            field="functional"
-            header="Area funcional"
-            :sortable="true"
-          ></Column>
           <Column field="register" header="Registro" :sortable="true"></Column>
         </DataTable>
         <!--row alter in table-->
@@ -89,6 +83,17 @@
                   v-model="selectedEmployee.register"
                   autocomplete="off"
                   type="number"
+                />
+              </div>
+                <div class="p-col-4">
+                <label for="email">E-mail</label>
+              </div>
+              <div class="p-col-8">
+                <InputText
+                  id="email"
+                  v-model="selectedEmployee.email"
+                  autocomplete="off"
+                  type="email"
                 />
               </div>
             </div>

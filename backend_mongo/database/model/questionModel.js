@@ -20,6 +20,9 @@ module.exports = mongoose.model(
       register: {
         type: Number,
       },
+      email: {
+        type: String,
+      },
       __v: {
         type: Number,
       },
