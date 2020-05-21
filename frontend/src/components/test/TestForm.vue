@@ -6,21 +6,22 @@
         <p>{{ body }}</p>
       </div>
       <div class="p-col-12">
-        <RadioButton />
+        <RadioButton value="A" v-model="result" />
         <label class="p-radiobutton-label">A) {{ answerA }}</label>
       </div>
       <div class="p-col-12">
-        <RadioButton />
+        <RadioButton value="B" v-model="result" />
         <label class="p-radiobutton-label">B) {{ answerB }}</label>
       </div>
       <div class="p-col-12">
-        <RadioButton />
+        <RadioButton value="C" v-model="result" />
         <label class="p-radiobutton-label">C) {{ answerC }}</label>
       </div>
       <div class="p-col-12">
-        <RadioButton />
+        <RadioButton value="D" v-model="result" />
         <label class="p-radiobutton-label">D) {{ answerD }}</label>
       </div>
+      <p v-if="result != null">Alternativa Selecionada: {{ result }}</p>
     </form>
   </div>
 </template>
@@ -28,6 +29,7 @@
 <script>
 export default {
   props: {
+    result:'',
     number: {
       type: Number,
       required: true

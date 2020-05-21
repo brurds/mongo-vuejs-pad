@@ -8,14 +8,15 @@
                :number="index + 1"
             :body="test[index].body"
             :answerA="test[index].answerA"
-            :answerB="test[index].answerB"
+            :answerB="test[index].answerB" 
             :answerC="test[index].answerC"
             :answerD="test[index].answerD"
             />
         </div>
-        
       </div>
       {{employee}}
+      <p></p>
+      {{localResult}}
     </div>
   </div>
 </template>
@@ -29,13 +30,18 @@ export default {
   components: {
     TestForm
   },
-
+  props:{
+    result:{
+      type:Array
+    }
+  },
   data() {
     return {
         idTest:'',
         idEmployee:'',
         test: [],
-        employee:undefined
+        employee:undefined,
+        localResult:[]
     };
   },
 
