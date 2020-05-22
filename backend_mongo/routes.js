@@ -7,7 +7,6 @@ const questionController = new QuestionController();
 const TestController = require('./controller/test');
 const testeController = new TestController();
 
-
 routes.route("/employee")
     .get(employeeController.get())
     .post(employeeController.post());

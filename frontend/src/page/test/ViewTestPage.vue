@@ -1,22 +1,22 @@
 <template>
   <div class="container">
     <div class="form-width">
-      <h3>Olá {{employee.name}}</h3>
+      <h3>Olá {{ employee.name }}</h3>
       <div class="div-test">
         <div v-for="(question, index) in test" :key="test._id">
-            <TestForm
-               :number="index + 1"
+          <TestForm
+            :number="index + 1"
             :body="test[index].body"
             :answerA="test[index].answerA"
-            :answerB="test[index].answerB" 
+            :answerB="test[index].answerB"
             :answerC="test[index].answerC"
             :answerD="test[index].answerD"
-            />
+          />
         </div>
       </div>
-      {{employee}}
+      {{ employee }}
       <p></p>
-      {{localResult}}
+      {{ localResult }}
     </div>
   </div>
 </template>
@@ -30,18 +30,13 @@ export default {
   components: {
     TestForm
   },
-  props:{
-    result:{
-      type:Array
-    }
-  },
   data() {
     return {
-        idTest:'',
-        idEmployee:'',
-        test: [],
-        employee:undefined,
-        localResult:[]
+      idTest: "",
+      idEmployee: "",
+      test: [],
+      employee: undefined,
+      localResult: []
     };
   },
 
@@ -49,7 +44,7 @@ export default {
     this.idTest = this.$route.path.substring(6, 30);
     this.idEmployee = this.$route.path.substring(31, 55);
     this.findOneTest();
-    this.findOneEmployee();  
+    this.findOneEmployee();
   },
 
   methods: {
