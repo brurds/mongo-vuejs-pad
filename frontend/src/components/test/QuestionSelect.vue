@@ -28,7 +28,7 @@
       <div v-if="selectedQuestion[0] != null" >
         <h3 class="form-title">Prova</h3>
         <div class="div-test">
-          <div v-for="(question, index) in selectedQuestion" :key="selectedQuestion._id">
+          <div v-for="(question, index) in selectedQuestion" :key="index">
             <TestForm
               :number="index + 1"
               :body="selectedQuestion[index].body"
@@ -43,7 +43,7 @@
       <div v-if="selectedQuestion[0] != null">
         <h3 class="form-title">Gabarito</h3>
         <div class="border div-test">
-          <div v-for="(question, index) in selectedQuestion" :key="selectedQuestion._id">
+          <div v-for="(question, index) in selectedQuestion" :key="index">
             <ResponseTemplate
               :number="index + 1"
               :correctAnswer="selectedQuestion[index].correctAnswer"

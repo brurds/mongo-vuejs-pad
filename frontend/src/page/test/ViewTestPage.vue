@@ -3,7 +3,7 @@
     <div class="form-width">
       <h3>Olá {{ employee.name }}</h3>
       <div class="div-test">
-        <div v-for="(question, index) in test" :key="test._id">
+        <div v-for="(question, index) in test" :key="index">
           <TestForm
             :number="index + 1"
             :body="test[index].body"
@@ -11,12 +11,10 @@
             :answerB="test[index].answerB"
             :answerC="test[index].answerC"
             :answerD="test[index].answerD"
+            v-on:childToParent="addItem"
           />
         </div>
       </div>
-      {{ employee }}
-      <p></p>
-      {{ localResult }}
     </div>
   </div>
 </template>
@@ -35,8 +33,8 @@ export default {
       idTest: "",
       idEmployee: "",
       test: [],
-      employee: undefined,
-      localResult: []
+      employee: {},
+      localResult: [] 
     };
   },
 
@@ -48,10 +46,15 @@ export default {
   },
 
   methods: {
+    addItem(value) {
+      this.$set(this.localResult,value.number-1,value.result);
+      console.log("cheguei ",value)
+    },
     findOneTest() {
       Test.findOne(this.idTest)
         .then(res => {
           this.test = res.data.questions;
+          this.localResult = Array(res.data.questions.length);
         })
         .catch(error => console.log(error));
     },

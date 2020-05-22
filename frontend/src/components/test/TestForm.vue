@@ -6,19 +6,19 @@
         <p>{{ body }}</p>
       </div>
       <div class="p-col-12">
-        <RadioButton value="A" v-model="result" />
+        <RadioButton value="a" v-model="result" @change="emitToParent"/>
         <label class="p-radiobutton-label">A) {{ answerA }}</label>
       </div>
       <div class="p-col-12">
-        <RadioButton value="B" v-model="result" />
+        <RadioButton value="b" v-model="result" @change="emitToParent" />
         <label class="p-radiobutton-label">B) {{ answerB }}</label>
       </div>
       <div class="p-col-12">
-        <RadioButton value="C" v-model="result" />
+        <RadioButton value="c" v-model="result" @change="emitToParent" />
         <label class="p-radiobutton-label">C) {{ answerC }}</label>
       </div>
       <div class="p-col-12">
-        <RadioButton value="D" v-model="result" />
+        <RadioButton value="d" v-model="result" @change="emitToParent" />
         <label class="p-radiobutton-label">D) {{ answerD }}</label>
       </div>
       <p v-if="result != null">Alternativa Selecionada: {{ result }}</p>
@@ -29,7 +29,6 @@
 <script>
 export default {
   props: {
-    result:'',
     number: {
       type: Number,
       required: true
@@ -54,7 +53,18 @@ export default {
       type: String,
       required: true
     }
-  }
+  },
+  data() {
+    return {
+      result:''
+    }
+  },
+  methods: {
+    emitToParent(event){
+      this.$emit('childToParent',{ result:this.result,number:this.number } );
+      console.log('enviado '+ this.result);
+    }
+  },
 };
 </script>
 
