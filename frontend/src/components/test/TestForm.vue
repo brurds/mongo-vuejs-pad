@@ -21,7 +21,6 @@
         <RadioButton value="d" v-model="result" @change="emitToParent" />
         <label class="p-radiobutton-label">D) {{ answerD }}</label>
       </div>
-      <p v-if="result != null">Alternativa Selecionada: {{ result }}</p>
     </form>
   </div>
 </template>
@@ -62,7 +61,6 @@ export default {
   methods: {
     emitToParent(event){
       this.$emit('childToParent',{ result:this.result,number:this.number } );
-      console.log('enviado '+ this.result);
     }
   },
 };
